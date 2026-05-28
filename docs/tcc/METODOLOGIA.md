@@ -4,87 +4,102 @@
 
 A metodologia utiliza dados vetoriais e raster:
 
-- Subestações: pontos com tensão e localização.
-- Linhas de transmissão: geometrias lineares.
-- Potencial solar: raster GeoTIFF com irradiância.
-- Potencial eólico: raster GeoTIFF com velocidade média do vento.
-- Demanda: pontos ou polígonos representando centros de carga.
-- Restrições: polígonos de áreas ambientalmente sensíveis.
+- subestações e linhas de transmissão;
+- potencial solar em raster GeoTIFF;
+- potencial eólico em raster GeoTIFF;
+- demanda ou centros de carga;
+- rodovias;
+- recursos hídricos;
+- áreas urbanas;
+- declividade em raster;
+- aptidão do uso do solo em raster;
+- restrições ambientais ou legais.
 
 ## 2. Padronização espacial
 
-Os dados são convertidos para:
+Os dados são lidos no CRS de origem e convertidos para:
 
-- `EPSG:4326` para leitura e visualização;
-- `EPSG:5880` para cálculo de distâncias em metros no Brasil.
+- `EPSG:4326` na visualização e na amostragem dos rasters mock;
+- `EPSG:5880` nos cálculos de distância.
 
-## 3. Geração de pontos candidatos
+O uso de CRS projetado evita medir distâncias em graus geográficos.
 
-É gerada uma malha regular sobre a área de estudo. Cada ponto representa uma possível região candidata.
+## 3. Pontos candidatos
 
-## 4. Extração dos atributos energéticos
+É gerada uma malha regular sobre a área de estudo. Cada ponto representa uma região candidata. O espaçamento da malha é configurável na interface e no arquivo `config/config.yaml`.
 
-Para cada ponto candidato, são extraídos:
+## 4. Restrições
 
-- irradiância solar no pixel correspondente;
-- velocidade do vento no pixel correspondente.
+A camada de restrições pode ser tratada de duas formas:
 
-## 5. Cálculo das distâncias
+- `exclude`: remove pontos dentro de áreas restritas;
+- `penalize`: mantém os pontos, mas multiplica o score por um fator de penalização.
 
-São calculadas:
+A opção `exclude` é a recomendada quando a camada representa impedimento legal ou ambiental forte. A opção `penalize` é útil para camadas de sensibilidade ou incerteza.
 
-- distância até a subestação ou linha mais próxima;
-- distância até o centro de carga mais próximo.
+## 5. Critérios avaliados
 
-As distâncias são calculadas no CRS projetado configurado (`EPSG:5880` por padrão), usando busca espacial do elemento mais próximo. Isso preserva unidades em metros e melhora a escalabilidade quando há muitos pontos candidatos ou muitos elementos de rede.
+Os critérios implementados são:
 
-## 6. Estimativa de custo
+- maior irradiância solar;
+- maior velocidade média do vento;
+- menor distância à rede elétrica;
+- menor distância à demanda;
+- menor distância a rodovias;
+- menor distância a recursos hídricos quando houver peso para esse critério;
+- maior afastamento de áreas urbanas;
+- menor declividade;
+- maior aptidão do uso do solo.
 
-O custo de conexão é estimado por:
+O custo de infraestrutura é exportado e pode ser usado como critério, mas os cenários padrão evitam dar peso simultâneo ao custo e às distâncias que formam esse custo para não duplicar o mesmo efeito.
+
+## 6. Padronização fuzzy
+
+Cada critério é convertido para escala 0-1 com funções fuzzy lineares e limites configuráveis:
+
+- critérios de benefício, como solar e vento, crescem de 0 a 1;
+- critérios de custo, como distância e declividade, decrescem de 1 a 0;
+- distância urbana cresce de 0 a 1, pois o afastamento reduz conflito de uso.
+
+Essa abordagem é mais estável que min-max puro, pois o score não depende apenas dos valores extremos do conjunto carregado.
+
+## 7. Soma ponderada
+
+O score final é calculado por Weighted Linear Combination:
 
 ```text
-Custo = distância até rede (km) × custo médio por km
+score = soma(peso_normalizado_i * criterio_i) * fator_restricao
 ```
 
-## 7. Restrições
+Os pesos são normalizados automaticamente para soma 1. Isso permite testar cenários sem exigir que o usuário feche a soma manualmente.
 
-A política de restrição ambiental é configurável:
+## 8. Cenários
 
-- `exclude`: pontos dentro de áreas restritas são removidos da análise;
-- `penalize`: pontos restritos permanecem no ranking, mas recebem um fator multiplicativo de penalização no score final.
+Os cenários implementados são:
 
-A opção `exclude` é mais conservadora para áreas de impedimento legal. A opção `penalize` é útil quando a camada representa sensibilidade ambiental, custo de mitigação ou restrição ainda sujeita a validação.
+- `solar`;
+- `eolico`;
+- `hibrido`;
+- `infraestrutura`;
+- `ambiental`.
 
-## 8. Normalização
+O cenário híbrido é o principal para o objetivo do trabalho porque combina potencial solar, potencial eólico, infraestrutura e aptidão territorial.
 
-Cada variável é normalizada entre 0 e 1.
+## 9. Classificação
 
-Variáveis benéficas:
+Além do score contínuo 0-1, o modelo calcula uma classe de aptidão de 1 a 9:
 
-- solar;
-- vento.
+```text
+classe = teto(score * 9)
+```
 
-Variáveis de custo:
-
-- distância à rede;
-- distância à carga;
-- custo de conexão.
-
-Critérios sem variação recebem valor neutro, evitando que uma camada constante domine o resultado. Critérios totalmente ausentes recebem score zero para não favorecer candidatos por falta de informação.
-
-## 9. Score final
-
-O score final é calculado por soma ponderada. Três cenários são implementados:
-
-- Solar;
-- Eólico;
-- Híbrido.
-
-Os pesos informados em cada cenário são normalizados automaticamente para soma igual a 1. Assim, o usuário pode ajustar valores relativos na interface sem precisar fechar manualmente a soma dos pesos.
+Essa classe facilita a leitura cartográfica e a comparação entre áreas.
 
 ## 10. Saídas
 
-- Ranking CSV;
-- Ranking GeoJSON;
-- Mapa interativo HTML;
-- Dashboard Streamlit.
+O pipeline gera:
+
+- ranking CSV;
+- ranking GeoJSON;
+- mapa HTML;
+- dashboard Streamlit com gráficos, tabela selecionável e mapa com destaque do candidato selecionado.

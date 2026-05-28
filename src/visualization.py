@@ -1,6 +1,7 @@
 from pathlib import Path
-import geopandas as gpd
+
 import folium
+import geopandas as gpd
 from folium.plugins import MarkerCluster
 
 
@@ -16,12 +17,14 @@ def make_folium_map(results: gpd.GeoDataFrame, output_path: str | Path | None = 
     for _, row in gdf.iterrows():
         popup = f"""
         <b>Rank:</b> {row['rank']}<br>
+        <b>Classe:</b> {row['aptitude_class']}/9<br>
         <b>Score:</b> {row['score_final']:.3f}<br>
         <b>Solar:</b> {row['solar_kwh_m2_day']:.2f} kWh/m².dia<br>
         <b>Vento:</b> {row['wind_m_s']:.2f} m/s<br>
         <b>Dist. rede:</b> {row['dist_grid_km']:.1f} km<br>
+        <b>Dist. rodovia:</b> {row['dist_road_km']:.1f} km<br>
         <b>Dist. demanda:</b> {row['dist_demand_km']:.1f} km<br>
-        <b>Custo conexão:</b> R$ {row['connection_cost_brl']:,.0f}
+        <b>Custo infraestrutura:</b> R$ {row['infrastructure_cost_brl']:,.0f}
         """
         folium.CircleMarker(
             location=[row.geometry.y, row.geometry.x],

@@ -1,37 +1,35 @@
-# TCC Energia — Localização Ótima de Usinas Renováveis
+# TCC Energia - Localização Ótima de Usinas Renováveis
 
-Projeto robusto para análise geoespacial e multicritério de locais ótimos para implantação de usinas solares, eólicas e híbridas no Brasil.
+Projeto para análise geoespacial e multicritério de locais candidatos à implantação de usinas solares, eólicas e híbridas no Brasil.
 
 ## Objetivo
-Identificar e ranquear áreas candidatas para novas usinas renováveis considerando:
+
+Identificar e ranquear áreas candidatas considerando:
 
 - potencial solar;
 - potencial eólico;
-- distância até subestações e linhas de transmissão;
-- proximidade de centros de carga/demanda;
+- proximidade da rede elétrica;
+- proximidade de centros de carga;
+- acesso rodoviário;
+- acesso a recursos hídricos quando aplicável;
+- afastamento de áreas urbanas;
+- declividade;
+- aptidão do uso do solo;
 - restrições ambientais;
-- custo estimado de conexão;
-- pesos ajustáveis por cenário.
+- custo estimado de infraestrutura.
 
-## Produtos gerados
+## Stack
 
-1. Aplicativo web em Streamlit.
-2. Pipeline Python modular.
-3. Dados fictícios para teste imediato.
-4. Exportação de resultados em CSV, GeoJSON e mapa HTML.
-5. Estrutura completa sugerida para TCC.
+A stack atual continua adequada para o objetivo do TCC:
 
-## Avaliação da stack
+- `GeoPandas`, `Shapely` e `PyProj` para processamento vetorial e cálculo de distâncias em CRS projetado;
+- `Rasterio` para amostrar rasters de irradiância, vento, declividade e aptidão territorial;
+- `Streamlit` para uma interface simples de cenários e pesos;
+- `PyDeck` para mapa interativo no app com destaque do candidato selecionado no ranking;
+- `Folium` para exportação de mapa HTML;
+- `Pandas`, `NumPy` e `Plotly` para ranking, scoring e gráficos.
 
-A stack atual é adequada para o objetivo do projeto:
-
-- `GeoPandas`, `Shapely` e `PyProj` resolvem bem o processamento vetorial e os cálculos em CRS projetado;
-- `Rasterio` é a escolha prática para extrair potencial solar/eólico de rasters GeoTIFF;
-- `Streamlit` entrega uma interface simples para ajustar cenários e pesos sem criar uma aplicação web complexa;
-- `Folium` funciona bem para mapas interativos exploratórios;
-- `Pandas`/`NumPy` são suficientes para ranking, normalização e exportações.
-
-Para um TCC e um protótipo analítico, trocar para uma stack mais pesada, como backend web dedicado, banco espacial ou frontend separado, aumentaria a complexidade sem ganho proporcional. Essas tecnologias só passam a ser necessárias se o projeto evoluir para produção com muitos usuários, dados grandes ou ingestão contínua.
+Trocar para banco espacial, backend web separado ou frontend dedicado só faz sentido se o projeto evoluir para produção com dados muito grandes, múltiplos usuários ou ingestão contínua.
 
 ## Execução rápida
 
@@ -45,46 +43,55 @@ streamlit run app/main_streamlit.py
 
 ## Deploy no Streamlit Cloud
 
-Use `app/main_streamlit.py` como arquivo principal. O projeto mantém apenas `requirements.txt` para o deploy porque o Streamlit Cloud prioriza `environment.yml` quando ele existe no repositório, o que pode deixar a implantação presa na etapa de resolução do ambiente Conda.
+Use `app/main_streamlit.py` como **Main file path**.
 
-No primeiro boot, o aplicativo cria dados fictícios em `data/raw/` se os arquivos esperados ainda não existirem. Isso permite que o primeiro deploy funcione sem etapa manual de ingestão. Depois, esses arquivos podem ser substituídos pelas bases reais indicadas abaixo.
+O repositório usa `requirements.txt`. Não mantenha `environment.yml` no repositório, porque o Streamlit Cloud prioriza esse arquivo e pode ficar preso na resolução Conda.
 
-## Estrutura
+No primeiro boot, se os caminhos esperados em `data/raw/` não existirem, o app gera dados mock sem sobrescrever arquivos reais já presentes.
 
-```text
-TCC_Energia_Robusto/
-├── app/
-├── src/
-├── scripts/
-├── config/
-├── data/
-├── outputs/
-├── notebooks/
-├── docs/tcc/
-├── tests/
-└── README.md
-```
+## Metodologia
+
+A metodologia implementada segue uma análise multicritério espacial com Weighted Linear Combination (WLC), compatível com a lógica SIG + AHP discutida na literatura, mas adaptada ao objetivo deste trabalho: avaliar potencial solar e eólico, inclusive em cenários híbridos.
+
+Fluxo:
+
+1. Carregamento das camadas vetoriais e raster.
+2. Conversão para CRS projetado (`EPSG:5880`) nos cálculos de distância.
+3. Geração de malha regular de pontos candidatos.
+4. Exclusão ou penalização de pontos em áreas restritas.
+5. Amostragem dos rasters de solar, vento, declividade e aptidão do uso do solo.
+6. Cálculo de distâncias à rede, demanda, rodovias, água e áreas urbanas.
+7. Padronização fuzzy dos critérios para escala 0-1.
+8. Soma ponderada dos critérios conforme cenário.
+9. Classificação de aptidão em escala 1-9 e exportação do ranking.
+
+## Cenários
+
+- `solar`: prioriza irradiância e viabilidade territorial.
+- `eolico`: prioriza velocidade do vento e viabilidade territorial.
+- `hibrido`: equilibra solar, vento e infraestrutura.
+- `infraestrutura`: prioriza conexão, demanda e acesso.
+- `ambiental`: prioriza uso do solo, declividade e afastamento urbano.
 
 ## Dados reais esperados
 
 | Camada | Formato recomendado | Caminho padrão |
 |---|---|---|
-| Subestações | GeoJSON/GPKG/SHP | data/raw/ons/subestacoes.geojson |
-| Linhas de transmissão | GeoJSON/GPKG/SHP | data/raw/ons/linhas.geojson |
-| Irradiância solar | GeoTIFF | data/raw/solar/irradiancia_global.tif |
-| Velocidade do vento | GeoTIFF | data/raw/eolico/velocidade_vento.tif |
-| Demanda/carga | GeoJSON ou CSV com coordenadas | data/raw/demanda/demanda.geojson |
-| Restrições ambientais | GeoJSON/GPKG/SHP | data/raw/restricoes/restricoes.geojson |
+| Subestações | GeoJSON/GPKG/SHP | `data/raw/ons/subestacoes.geojson` |
+| Linhas de transmissão | GeoJSON/GPKG/SHP | `data/raw/ons/linhas.geojson` |
+| Irradiância solar | GeoTIFF | `data/raw/solar/irradiancia_global.tif` |
+| Velocidade do vento | GeoTIFF | `data/raw/eolico/velocidade_vento.tif` |
+| Demanda/carga | GeoJSON/GPKG/SHP | `data/raw/demanda/demanda.geojson` |
+| Rodovias | GeoJSON/GPKG/SHP | `data/raw/infra/rodovias.geojson` |
+| Recursos hídricos | GeoJSON/GPKG/SHP | `data/raw/hidrografia/recursos_hidricos.geojson` |
+| Áreas urbanas | GeoJSON/GPKG/SHP | `data/raw/urbano/areas_urbanas.geojson` |
+| Declividade | GeoTIFF | `data/raw/topografia/declividade_percent.tif` |
+| Aptidão do uso do solo | GeoTIFF | `data/raw/uso_solo/aptidao_solo.tif` |
+| Restrições ambientais | GeoJSON/GPKG/SHP | `data/raw/restricoes/restricoes.geojson` |
 
-## Metodologia resumida
+## Saídas
 
-O sistema gera uma malha de pontos candidatos, extrai os valores de potencial solar e eólico dos rasters, calcula distâncias em CRS projetado até rede e demanda, remove ou penaliza áreas restritas e calcula um score multicritério normalizado.
-
-Melhorias metodológicas implementadas:
-
-- normalização min-max com tratamento explícito para critérios sem variação e dados ausentes;
-- normalização automática dos pesos informados, mantendo a importância relativa e garantindo score entre 0 e 1;
-- cálculo de distância ao elemento mais próximo usando índice espacial (`sjoin_nearest`), mais escalável que medir todos os pontos contra uma geometria unificada;
-- política configurável para restrições ambientais: exclusão dos pontos restritos ou penalização do score;
-- exportação do indicador `is_restricted` e do fator de penalização para auditoria dos resultados;
-- dashboard com distribuição de scores, top candidatos, mapa exportado e pesos normalizados.
+- Ranking CSV;
+- Ranking GeoJSON;
+- mapa HTML;
+- dashboard Streamlit com seleção no ranking e destaque do ponto no mapa.

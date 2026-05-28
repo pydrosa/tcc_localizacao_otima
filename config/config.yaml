@@ -1,6 +1,6 @@
 project:
   name: TCC_Energia_Robusto
-  description: Localização ótima de usinas renováveis com análise multicritério geoespacial.
+  description: Localizacao otima de usinas renovaveis com analise multicriterio geoespacial.
 
 paths:
   substations: data/raw/ons/subestacoes.geojson
@@ -8,6 +8,11 @@ paths:
   solar_raster: data/raw/solar/irradiancia_global.tif
   wind_raster: data/raw/eolico/velocidade_vento.tif
   demand_points: data/raw/demanda/demanda.geojson
+  roads: data/raw/infra/rodovias.geojson
+  water_resources: data/raw/hidrografia/recursos_hidricos.geojson
+  urban_areas: data/raw/urbano/areas_urbanas.geojson
+  slope_raster: data/raw/topografia/declividade_percent.tif
+  land_use_raster: data/raw/uso_solo/aptidao_solo.tif
   restrictions: data/raw/restricoes/restricoes.geojson
   outputs: outputs
 
@@ -20,23 +25,86 @@ analysis:
 
 weights:
   solar:
-    solar_potential: 0.50
-    wind_potential: 0.00
-    grid_distance: 0.25
-    demand_distance: 0.15
-    connection_cost: 0.10
-  eolico:
-    solar_potential: 0.00
-    wind_potential: 0.50
-    grid_distance: 0.25
-    demand_distance: 0.15
-    connection_cost: 0.10
-  hibrido:
-    solar_potential: 0.30
-    wind_potential: 0.30
-    grid_distance: 0.20
+    solar_potential: 0.35
+    wind_potential: 0.05
+    grid_distance: 0.15
     demand_distance: 0.10
-    connection_cost: 0.10
+    road_distance: 0.08
+    water_distance: 0.05
+    urban_distance: 0.05
+    slope: 0.10
+    land_use: 0.07
+    connection_cost: 0.00
+  eolico:
+    solar_potential: 0.05
+    wind_potential: 0.40
+    grid_distance: 0.18
+    demand_distance: 0.10
+    road_distance: 0.08
+    water_distance: 0.00
+    urban_distance: 0.07
+    slope: 0.07
+    land_use: 0.05
+    connection_cost: 0.00
+  hibrido:
+    solar_potential: 0.25
+    wind_potential: 0.25
+    grid_distance: 0.15
+    demand_distance: 0.10
+    road_distance: 0.07
+    water_distance: 0.03
+    urban_distance: 0.05
+    slope: 0.05
+    land_use: 0.05
+    connection_cost: 0.00
+  infraestrutura:
+    solar_potential: 0.10
+    wind_potential: 0.10
+    grid_distance: 0.30
+    demand_distance: 0.20
+    road_distance: 0.20
+    water_distance: 0.00
+    urban_distance: 0.00
+    slope: 0.05
+    land_use: 0.05
+    connection_cost: 0.00
+  ambiental:
+    solar_potential: 0.15
+    wind_potential: 0.10
+    grid_distance: 0.05
+    demand_distance: 0.02
+    road_distance: 0.03
+    water_distance: 0.00
+    urban_distance: 0.15
+    slope: 0.20
+    land_use: 0.30
+    connection_cost: 0.00
+
+fuzzy:
+  solar_potential:
+    lower: 4.2
+    upper: 6.0
+  wind_potential:
+    lower: 5.0
+    upper: 8.5
+  grid_distance:
+    lower: 10
+    upper: 120
+  demand_distance:
+    lower: 25
+    upper: 250
+  road_distance:
+    lower: 5
+    upper: 80
+  water_distance:
+    lower: 10
+    upper: 120
+  urban_distance:
+    lower: 5
+    upper: 30
+  slope:
+    lower: 2
+    upper: 8
 
 thresholds:
   min_solar_kwh_m2_day: 4.5
@@ -45,4 +113,7 @@ thresholds:
   restriction_penalty_factor: 0.35
 
 costs:
+  grid_connection_cost_per_km_brl: 1200000
+  road_access_cost_per_km_brl: 250000
+  water_access_cost_per_km_brl: 180000
   connection_cost_per_km_brl: 1200000

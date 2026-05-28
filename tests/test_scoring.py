@@ -1,7 +1,15 @@
 import pandas as pd
 import pytest
 
-from src.scoring import normalize_positive, normalize_negative, normalize_weights, weighted_score
+from src.scoring import (
+    aptitude_class,
+    fuzzy_decreasing,
+    fuzzy_increasing,
+    normalize_negative,
+    normalize_positive,
+    normalize_weights,
+    weighted_score,
+)
 
 
 def test_normalize_positive():
@@ -34,6 +42,21 @@ def test_normalize_weights_keeps_relative_importance():
     assert out["solar_potential"] == pytest.approx(2 / 3)
     assert out["wind_potential"] == pytest.approx(1 / 3)
     assert sum(out.values()) == pytest.approx(1)
+
+
+def test_fuzzy_increasing_uses_configured_limits():
+    out = fuzzy_increasing(pd.Series([4.2, 5.1, 6.0]), lower=4.2, upper=6.0)
+    assert out.tolist() == pytest.approx([0.0, 0.5, 1.0])
+
+
+def test_fuzzy_decreasing_uses_configured_limits():
+    out = fuzzy_decreasing(pd.Series([10, 65, 120]), lower=10, upper=120)
+    assert out.tolist() == pytest.approx([1.0, 0.5, 0.0])
+
+
+def test_aptitude_class_maps_score_to_nine_classes():
+    out = aptitude_class(pd.Series([0.01, 0.5, 1.0]))
+    assert out.tolist() == [1, 5, 9]
 
 
 def test_weighted_score_stays_between_zero_and_one():
