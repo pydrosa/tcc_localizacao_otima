@@ -1,0 +1,2413 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b4d999c99779b378da5c7f2285a8d93d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_b4d999c99779b378da5c7f2285a8d93d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b4d999c99779b378da5c7f2285a8d93d = L.map(
+                "map_b4d999c99779b378da5c7f2285a8d93d",
+                {
+                    center: [-8.659470025858925, -38.45900456396323],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_caa54006806c55e36d9b98265d20ed6e = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_caa54006806c55e36d9b98265d20ed6e.addTo(map_b4d999c99779b378da5c7f2285a8d93d);
+        
+    
+            var marker_cluster_14fe1a95db71bdc74729ddf0deda27e1 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_afb2cc993dd5a33a43b0bf1a382971b9 = L.circleMarker(
+                [-8.553834994719768, -39.325663010827114],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_b0f50c6671925faa96f41fbc720d8380 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_cff1162f6cd96dc473c1e685603afd59 = $(`<div id="html_cff1162f6cd96dc473c1e685603afd59" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 1<br>         <b>Score:</b> 0.950<br>         <b>Solar:</b> 6.35 kWh/m².dia<br>         <b>Vento:</b> 8.94 m/s<br>         <b>Dist. rede:</b> 12.0 km<br>         <b>Dist. demanda:</b> 493.1 km<br>         <b>Custo conexão:</b> R$ 14,345,237         </div>`)[0];
+                popup_b0f50c6671925faa96f41fbc720d8380.setContent(html_cff1162f6cd96dc473c1e685603afd59);
+            
+        
+
+        circle_marker_afb2cc993dd5a33a43b0bf1a382971b9.bindPopup(popup_b0f50c6671925faa96f41fbc720d8380)
+        ;
+
+        
+    
+    
+            var circle_marker_1ee563fc2e5f87f015c87c277ea83d14 = L.circleMarker(
+                [-8.464921831609905, -37.056886975654486],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_41910a6c45fa334e59ad176a9a8a9835 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_89f474f6096eba747aa4b79dcada9bfc = $(`<div id="html_89f474f6096eba747aa4b79dcada9bfc" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 2<br>         <b>Score:</b> 0.936<br>         <b>Solar:</b> 6.29 kWh/m².dia<br>         <b>Vento:</b> 8.86 m/s<br>         <b>Dist. rede:</b> 116.9 km<br>         <b>Dist. demanda:</b> 244.6 km<br>         <b>Custo conexão:</b> R$ 140,289,053         </div>`)[0];
+                popup_41910a6c45fa334e59ad176a9a8a9835.setContent(html_89f474f6096eba747aa4b79dcada9bfc);
+            
+        
+
+        circle_marker_1ee563fc2e5f87f015c87c277ea83d14.bindPopup(popup_41910a6c45fa334e59ad176a9a8a9835)
+        ;
+
+        
+    
+    
+            var circle_marker_97491a989d6bb3d17949991a2ac23d43 = L.circleMarker(
+                [-9.391189844654358, -38.37995165219812],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_d836d1640d82bbcc75ab172b603267e3 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_fce8bd0fa96bb69e5b3196ea44cb184a = $(`<div id="html_fce8bd0fa96bb69e5b3196ea44cb184a" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 3<br>         <b>Score:</b> 0.932<br>         <b>Solar:</b> 6.16 kWh/m².dia<br>         <b>Vento:</b> 8.95 m/s<br>         <b>Dist. rede:</b> 121.4 km<br>         <b>Dist. demanda:</b> 415.1 km<br>         <b>Custo conexão:</b> R$ 145,701,019         </div>`)[0];
+                popup_d836d1640d82bbcc75ab172b603267e3.setContent(html_fce8bd0fa96bb69e5b3196ea44cb184a);
+            
+        
+
+        circle_marker_97491a989d6bb3d17949991a2ac23d43.bindPopup(popup_d836d1640d82bbcc75ab172b603267e3)
+        ;
+
+        
+    
+    
+            var circle_marker_1b9752f8f1ce2c64534e73d11478f4a0 = L.circleMarker(
+                [-7.615506060479552, -37.5465952812643],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_9c0fe5ef35074390ffdbd973ae7a67f4 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_43a64481f2c9567939eb31836c47e90d = $(`<div id="html_43a64481f2c9567939eb31836c47e90d" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 4<br>         <b>Score:</b> 0.930<br>         <b>Solar:</b> 6.43 kWh/m².dia<br>         <b>Vento:</b> 8.77 m/s<br>         <b>Dist. rede:</b> 66.7 km<br>         <b>Dist. demanda:</b> 298.4 km<br>         <b>Custo conexão:</b> R$ 80,076,616         </div>`)[0];
+                popup_9c0fe5ef35074390ffdbd973ae7a67f4.setContent(html_43a64481f2c9567939eb31836c47e90d);
+            
+        
+
+        circle_marker_1b9752f8f1ce2c64534e73d11478f4a0.bindPopup(popup_9c0fe5ef35074390ffdbd973ae7a67f4)
+        ;
+
+        
+    
+    
+            var circle_marker_d931dd7487ca5478ff4d9f01411f1850 = L.circleMarker(
+                [-8.536931160711816, -38.87182841659612],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_7366085531a023246e5d5f8970880698 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e024a639d20012ccb7b7e9671d9ace10 = $(`<div id="html_e024a639d20012ccb7b7e9671d9ace10" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 5<br>         <b>Score:</b> 0.928<br>         <b>Solar:</b> 5.84 kWh/m².dia<br>         <b>Vento:</b> 8.74 m/s<br>         <b>Dist. rede:</b> 9.6 km<br>         <b>Dist. demanda:</b> 443.3 km<br>         <b>Custo conexão:</b> R$ 11,556,942         </div>`)[0];
+                popup_7366085531a023246e5d5f8970880698.setContent(html_e024a639d20012ccb7b7e9671d9ace10);
+            
+        
+
+        circle_marker_d931dd7487ca5478ff4d9f01411f1850.bindPopup(popup_7366085531a023246e5d5f8970880698)
+        ;
+
+        
+    
+    
+            var circle_marker_4535c593e9cbc4e3df5ed777b7318eed = L.circleMarker(
+                [-8.991442971616252, -39.308090898269036],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_beec4e7bb25691ef8393fd4a597428c7 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_103abf82fcea5df9c273531ca6ac9b8c = $(`<div id="html_103abf82fcea5df9c273531ca6ac9b8c" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 6<br>         <b>Score:</b> 0.924<br>         <b>Solar:</b> 6.13 kWh/m².dia<br>         <b>Vento:</b> 8.80 m/s<br>         <b>Dist. rede:</b> 33.1 km<br>         <b>Dist. demanda:</b> 499.4 km<br>         <b>Custo conexão:</b> R$ 39,775,712         </div>`)[0];
+                popup_beec4e7bb25691ef8393fd4a597428c7.setContent(html_103abf82fcea5df9c273531ca6ac9b8c);
+            
+        
+
+        circle_marker_4535c593e9cbc4e3df5ed777b7318eed.bindPopup(popup_beec4e7bb25691ef8393fd4a597428c7)
+        ;
+
+        
+    
+    
+            var circle_marker_f681a9af01f29e4316a91d71d3cdf649 = L.circleMarker(
+                [-8.013797199359967, -36.62267607844389],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_60528b6bc805d60dd99ae7ad3ffd37c1 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_de768d65ef4cfa7b4b5527ae5b1e45b7 = $(`<div id="html_de768d65ef4cfa7b4b5527ae5b1e45b7" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 7<br>         <b>Score:</b> 0.922<br>         <b>Solar:</b> 6.42 kWh/m².dia<br>         <b>Vento:</b> 8.79 m/s<br>         <b>Dist. rede:</b> 151.8 km<br>         <b>Dist. demanda:</b> 192.2 km<br>         <b>Custo conexão:</b> R$ 182,216,725         </div>`)[0];
+                popup_60528b6bc805d60dd99ae7ad3ffd37c1.setContent(html_de768d65ef4cfa7b4b5527ae5b1e45b7);
+            
+        
+
+        circle_marker_f681a9af01f29e4316a91d71d3cdf649.bindPopup(popup_60528b6bc805d60dd99ae7ad3ffd37c1)
+        ;
+
+        
+    
+    
+            var circle_marker_b6af12c6317406ca71e2dac69bd4102d = L.circleMarker(
+                [-7.196798366653856, -38.0155286205566],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_7f866640c0fc5e1af08a056a4d41ceee = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_553710bf0df6a9778176d0be5fed6b44 = $(`<div id="html_553710bf0df6a9778176d0be5fed6b44" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 8<br>         <b>Score:</b> 0.920<br>         <b>Solar:</b> 6.34 kWh/m².dia<br>         <b>Vento:</b> 8.78 m/s<br>         <b>Dist. rede:</b> 92.3 km<br>         <b>Dist. demanda:</b> 359.8 km<br>         <b>Custo conexão:</b> R$ 110,720,923         </div>`)[0];
+                popup_7f866640c0fc5e1af08a056a4d41ceee.setContent(html_553710bf0df6a9778176d0be5fed6b44);
+            
+        
+
+        circle_marker_b6af12c6317406ca71e2dac69bd4102d.bindPopup(popup_7f866640c0fc5e1af08a056a4d41ceee)
+        ;
+
+        
+    
+    
+            var circle_marker_41a456bd3a10bef7bde600d990290da2 = L.circleMarker(
+                [-9.041919136917384, -40.67132923771551],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_75547cdfa062f24f78b3581271ab3d36 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_bf5ce7828263f5d2f68be9f569f92046 = $(`<div id="html_bf5ce7828263f5d2f68be9f569f92046" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 9<br>         <b>Score:</b> 0.919<br>         <b>Solar:</b> 6.49 kWh/m².dia<br>         <b>Vento:</b> 8.85 m/s<br>         <b>Dist. rede:</b> 31.6 km<br>         <b>Dist. demanda:</b> 647.6 km<br>         <b>Custo conexão:</b> R$ 37,930,825         </div>`)[0];
+                popup_75547cdfa062f24f78b3581271ab3d36.setContent(html_bf5ce7828263f5d2f68be9f569f92046);
+            
+        
+
+        circle_marker_41a456bd3a10bef7bde600d990290da2.bindPopup(popup_75547cdfa062f24f78b3581271ab3d36)
+        ;
+
+        
+    
+    
+            var circle_marker_d2984cfd9f0ad9887f6fad80438b7458 = L.circleMarker(
+                [-8.51958201854341, -38.41803270615839],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_c52ebb2dcdded515ae6ad4843d3e1de7 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ccec569efd7882a6cd8b9f9238abafb2 = $(`<div id="html_ccec569efd7882a6cd8b9f9238abafb2" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 10<br>         <b>Score:</b> 0.916<br>         <b>Solar:</b> 6.16 kWh/m².dia<br>         <b>Vento:</b> 8.67 m/s<br>         <b>Dist. rede:</b> 31.2 km<br>         <b>Dist. demanda:</b> 393.5 km<br>         <b>Custo conexão:</b> R$ 37,459,121         </div>`)[0];
+                popup_c52ebb2dcdded515ae6ad4843d3e1de7.setContent(html_ccec569efd7882a6cd8b9f9238abafb2);
+            
+        
+
+        circle_marker_d2984cfd9f0ad9887f6fad80438b7458.bindPopup(popup_c52ebb2dcdded515ae6ad4843d3e1de7)
+        ;
+
+        
+    
+    
+            var circle_marker_17c75cc1cd7f9340ed33c7d74674a07a = L.circleMarker(
+                [-8.58628390011277, -40.23344542613462],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_fc1acfbbb63386745565a13af041bf02 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_632a4ce0b23023a58e7296a7dec1f80e = $(`<div id="html_632a4ce0b23023a58e7296a7dec1f80e" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 11<br>         <b>Score:</b> 0.913<br>         <b>Solar:</b> 5.33 kWh/m².dia<br>         <b>Vento:</b> 8.82 m/s<br>         <b>Dist. rede:</b> 55.1 km<br>         <b>Dist. demanda:</b> 592.9 km<br>         <b>Custo conexão:</b> R$ 66,149,595         </div>`)[0];
+                popup_fc1acfbbb63386745565a13af041bf02.setContent(html_632a4ce0b23023a58e7296a7dec1f80e);
+            
+        
+
+        circle_marker_17c75cc1cd7f9340ed33c7d74674a07a.bindPopup(popup_fc1acfbbb63386745565a13af041bf02)
+        ;
+
+        
+    
+    
+            var circle_marker_47916ab3f80229ff50aba71b9094adca = L.circleMarker(
+                [-8.897911424898165, -37.036881594586674],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_e209d916f51a9d2e93aa33824a765eb9 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4a0f2cce6e399aa1722065b4b7d794a2 = $(`<div id="html_4a0f2cce6e399aa1722065b4b7d794a2" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 12<br>         <b>Score:</b> 0.912<br>         <b>Solar:</b> 6.22 kWh/m².dia<br>         <b>Vento:</b> 8.76 m/s<br>         <b>Dist. rede:</b> 148.1 km<br>         <b>Dist. demanda:</b> 257.0 km<br>         <b>Custo conexão:</b> R$ 177,754,412         </div>`)[0];
+                popup_e209d916f51a9d2e93aa33824a765eb9.setContent(html_4a0f2cce6e399aa1722065b4b7d794a2);
+            
+        
+
+        circle_marker_47916ab3f80229ff50aba71b9094adca.bindPopup(popup_e209d916f51a9d2e93aa33824a765eb9)
+        ;
+
+        
+    
+    
+            var circle_marker_2c13e45dbafe54a62e3f1f60f4d76635 = L.circleMarker(
+                [-7.149537308860049, -36.658367965635506],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_30faf208511b51e0e71080421632b14b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2a040df336b4cf13fe612a20552e3fdf = $(`<div id="html_2a040df336b4cf13fe612a20552e3fdf" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 13<br>         <b>Score:</b> 0.910<br>         <b>Solar:</b> 6.28 kWh/m².dia<br>         <b>Vento:</b> 8.78 m/s<br>         <b>Dist. rede:</b> 177.5 km<br>         <b>Dist. demanda:</b> 222.4 km<br>         <b>Custo conexão:</b> R$ 213,006,361         </div>`)[0];
+                popup_30faf208511b51e0e71080421632b14b.setContent(html_2a040df336b4cf13fe612a20552e3fdf);
+            
+        
+
+        circle_marker_2c13e45dbafe54a62e3f1f60f4d76635.bindPopup(popup_30faf208511b51e0e71080421632b14b)
+        ;
+
+        
+    
+    
+            var circle_marker_5351509f94a23c0ce795a72f0c7c76d8 = L.circleMarker(
+                [-7.1656488296920715, -37.11072512777774],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_aeb02a7ee63e78f5fb2d45efc68ba931 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_36c54d1c93f0947ab062ec6860a28edd = $(`<div id="html_36c54d1c93f0947ab062ec6860a28edd" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 14<br>         <b>Score:</b> 0.908<br>         <b>Solar:</b> 5.70 kWh/m².dia<br>         <b>Vento:</b> 8.72 m/s<br>         <b>Dist. rede:</b> 137.3 km<br>         <b>Dist. demanda:</b> 266.7 km<br>         <b>Custo conexão:</b> R$ 164,724,560         </div>`)[0];
+                popup_aeb02a7ee63e78f5fb2d45efc68ba931.setContent(html_36c54d1c93f0947ab062ec6860a28edd);
+            
+        
+
+        circle_marker_5351509f94a23c0ce795a72f0c7c76d8.bindPopup(popup_aeb02a7ee63e78f5fb2d45efc68ba931)
+        ;
+
+        
+    
+    
+            var circle_marker_aa6fe2c5fd15be60c8d4c6cb0e7720a4 = L.circleMarker(
+                [-9.8665207895415, -39.27020084177779],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_974fa42bdb4d406dfe566255872b5a0e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_727f2811f20dcfe0fef5c14f61276d03 = $(`<div id="html_727f2811f20dcfe0fef5c14f61276d03" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 15<br>         <b>Score:</b> 0.905<br>         <b>Solar:</b> 5.77 kWh/m².dia<br>         <b>Vento:</b> 8.84 m/s<br>         <b>Dist. rede:</b> 123.3 km<br>         <b>Dist. demanda:</b> 526.2 km<br>         <b>Custo conexão:</b> R$ 148,017,610         </div>`)[0];
+                popup_974fa42bdb4d406dfe566255872b5a0e.setContent(html_727f2811f20dcfe0fef5c14f61276d03);
+            
+        
+
+        circle_marker_aa6fe2c5fd15be60c8d4c6cb0e7720a4.bindPopup(popup_974fa42bdb4d406dfe566255872b5a0e)
+        ;
+
+        
+    
+    
+            var circle_marker_3e45c19e6393c5413aea38fb13e7c4bc = L.circleMarker(
+                [-7.663339493808184, -38.90516672534776],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_b7fbbb0a3504ca69ecdf1ccf008d4a89 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_35c458a003809b5f7791f66daa69fe6d = $(`<div id="html_35c458a003809b5f7791f66daa69fe6d" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 16<br>         <b>Score:</b> 0.903<br>         <b>Solar:</b> 6.80 kWh/m².dia<br>         <b>Vento:</b> 8.70 m/s<br>         <b>Dist. rede:</b> 80.6 km<br>         <b>Dist. demanda:</b> 446.2 km<br>         <b>Custo conexão:</b> R$ 96,684,956         </div>`)[0];
+                popup_b7fbbb0a3504ca69ecdf1ccf008d4a89.setContent(html_35c458a003809b5f7791f66daa69fe6d);
+            
+        
+
+        circle_marker_3e45c19e6393c5413aea38fb13e7c4bc.bindPopup(popup_b7fbbb0a3504ca69ecdf1ccf008d4a89)
+        ;
+
+        
+    
+    
+            var circle_marker_91038130a4426f23154705b5d92a35f7 = L.circleMarker(
+                [-9.826917437756498, -38.35945891589756],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_67c253034b111dab569086e4fdfc2dda = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_56f7a173e4d654c2c87a930db92fc9a7 = $(`<div id="html_56f7a173e4d654c2c87a930db92fc9a7" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 17<br>         <b>Score:</b> 0.902<br>         <b>Solar:</b> 6.56 kWh/m².dia<br>         <b>Vento:</b> 8.83 m/s<br>         <b>Dist. rede:</b> 166.5 km<br>         <b>Dist. demanda:</b> 434.2 km<br>         <b>Custo conexão:</b> R$ 199,821,968         </div>`)[0];
+                popup_67c253034b111dab569086e4fdfc2dda.setContent(html_56f7a173e4d654c2c87a930db92fc9a7);
+            
+        
+
+        circle_marker_91038130a4426f23154705b5d92a35f7.bindPopup(popup_67c253034b111dab569086e4fdfc2dda)
+        ;
+
+        
+    
+    
+            var circle_marker_c31783d582e63864615958fe3c54982c = L.circleMarker(
+                [-8.601817855723457, -40.68739147012156],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_d43ded561c3d554e5c54d4bdf3e5696f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_52eb20e9306f4b0c9dae59570a54b439 = $(`<div id="html_52eb20e9306f4b0c9dae59570a54b439" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 18<br>         <b>Score:</b> 0.901<br>         <b>Solar:</b> 6.67 kWh/m².dia<br>         <b>Vento:</b> 8.81 m/s<br>         <b>Dist. rede:</b> 76.7 km<br>         <b>Dist. demanda:</b> 642.8 km<br>         <b>Custo conexão:</b> R$ 92,051,774         </div>`)[0];
+                popup_d43ded561c3d554e5c54d4bdf3e5696f.setContent(html_52eb20e9306f4b0c9dae59570a54b439);
+            
+        
+
+        circle_marker_c31783d582e63864615958fe3c54982c.bindPopup(popup_d43ded561c3d554e5c54d4bdf3e5696f)
+        ;
+
+        
+    
+    
+            var circle_marker_dcceb36c4a4dabb2da2db07eccbddfee = L.circleMarker(
+                [-9.447170066768214, -39.744502366455556],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_4b7489a4f0c51f5960677c1b38f52e0f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_001f4bf9069069227c8a3b75f70c6f3f = $(`<div id="html_001f4bf9069069227c8a3b75f70c6f3f" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 19<br>         <b>Score:</b> 0.899<br>         <b>Solar:</b> 6.27 kWh/m².dia<br>         <b>Vento:</b> 8.71 m/s<br>         <b>Dist. rede:</b> 56.7 km<br>         <b>Dist. demanda:</b> 558.8 km<br>         <b>Custo conexão:</b> R$ 67,994,482         </div>`)[0];
+                popup_4b7489a4f0c51f5960677c1b38f52e0f.setContent(html_001f4bf9069069227c8a3b75f70c6f3f);
+            
+        
+
+        circle_marker_dcceb36c4a4dabb2da2db07eccbddfee.bindPopup(popup_4b7489a4f0c51f5960677c1b38f52e0f)
+        ;
+
+        
+    
+    
+            var circle_marker_35cd22879de55514683658567b593d49 = L.circleMarker(
+                [-9.956296060231889, -41.547927537343156],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_eb1978e921ce48720394d7f1b2eaec6e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_dba98fce78308974e0e31b87b68003ba = $(`<div id="html_dba98fce78308974e0e31b87b68003ba" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 20<br>         <b>Score:</b> 0.898<br>         <b>Solar:</b> 5.68 kWh/m².dia<br>         <b>Vento:</b> 8.75 m/s<br>         <b>Dist. rede:</b> 15.4 km<br>         <b>Dist. demanda:</b> 765.0 km<br>         <b>Custo conexão:</b> R$ 18,506,715         </div>`)[0];
+                popup_eb1978e921ce48720394d7f1b2eaec6e.setContent(html_dba98fce78308974e0e31b87b68003ba);
+            
+        
+
+        circle_marker_35cd22879de55514683658567b593d49.bindPopup(popup_eb1978e921ce48720394d7f1b2eaec6e)
+        ;
+
+        
+    
+    
+            var circle_marker_3f0182359668fc68a3177b3553435fd6 = L.circleMarker(
+                [-10.283557269658662, -38.79390244383355],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_090786d605467ca3fe6dc8dbc09421a6 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8d05de34aa269b8364d5b35b6ed0f17a = $(`<div id="html_8d05de34aa269b8364d5b35b6ed0f17a" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 21<br>         <b>Score:</b> 0.896<br>         <b>Solar:</b> 6.34 kWh/m².dia<br>         <b>Vento:</b> 8.88 m/s<br>         <b>Dist. rede:</b> 190.0 km<br>         <b>Dist. demanda:</b> 501.4 km<br>         <b>Custo conexão:</b> R$ 228,040,738         </div>`)[0];
+                popup_090786d605467ca3fe6dc8dbc09421a6.setContent(html_8d05de34aa269b8364d5b35b6ed0f17a);
+            
+        
+
+        circle_marker_3f0182359668fc68a3177b3553435fd6.bindPopup(popup_090786d605467ca3fe6dc8dbc09421a6)
+        ;
+
+        
+    
+    
+            var circle_marker_6a7b312c9955000843b221f759ddba81 = L.circleMarker(
+                [-8.857352916388463, -36.12871771206193],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_2633139985aad9446567cc98e2b6cc2f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_df4aa29675969a63156c47c3ce01a1a1 = $(`<div id="html_df4aa29675969a63156c47c3ce01a1a1" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 22<br>         <b>Score:</b> 0.895<br>         <b>Solar:</b> 5.83 kWh/m².dia<br>         <b>Vento:</b> 8.72 m/s<br>         <b>Dist. rede:</b> 228.6 km<br>         <b>Dist. demanda:</b> 166.4 km<br>         <b>Custo conexão:</b> R$ 274,356,864         </div>`)[0];
+                popup_2633139985aad9446567cc98e2b6cc2f.setContent(html_df4aa29675969a63156c47c3ce01a1a1);
+            
+        
+
+        circle_marker_6a7b312c9955000843b221f759ddba81.bindPopup(popup_2633139985aad9446567cc98e2b6cc2f)
+        ;
+
+        
+    
+    
+            var circle_marker_09e8429d766031c36f73cf30cf3a32d8 = L.circleMarker(
+                [-9.939421563376454, -41.09228741417968],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_e8d89589143fb9b06400c18b36484cf0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_eee0463d1bb936177afcb8b2bc0b07a9 = $(`<div id="html_eee0463d1bb936177afcb8b2bc0b07a9" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 23<br>         <b>Score:</b> 0.893<br>         <b>Solar:</b> 6.23 kWh/m².dia<br>         <b>Vento:</b> 8.73 m/s<br>         <b>Dist. rede:</b> 37.0 km<br>         <b>Dist. demanda:</b> 716.6 km<br>         <b>Custo conexão:</b> R$ 44,408,894         </div>`)[0];
+                popup_e8d89589143fb9b06400c18b36484cf0.setContent(html_eee0463d1bb936177afcb8b2bc0b07a9);
+            
+        
+
+        circle_marker_09e8429d766031c36f73cf30cf3a32d8.bindPopup(popup_e8d89589143fb9b06400c18b36484cf0)
+        ;
+
+        
+    
+    
+            var circle_marker_235e57c977d0369940d6d2f4e8cc6333 = L.circleMarker(
+                [-7.181404248363669, -37.56311218936628],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_b1599c746890ae99f6ea2b494a2b7812 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b03539111d5114db26fb6e6a2fdd198d = $(`<div id="html_b03539111d5114db26fb6e6a2fdd198d" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 24<br>         <b>Score:</b> 0.892<br>         <b>Solar:</b> 6.68 kWh/m².dia<br>         <b>Vento:</b> 8.58 m/s<br>         <b>Dist. rede:</b> 105.7 km<br>         <b>Dist. demanda:</b> 312.8 km<br>         <b>Custo conexão:</b> R$ 126,872,581         </div>`)[0];
+                popup_b1599c746890ae99f6ea2b494a2b7812.setContent(html_b03539111d5114db26fb6e6a2fdd198d);
+            
+        
+
+        circle_marker_235e57c977d0369940d6d2f4e8cc6333.bindPopup(popup_b1599c746890ae99f6ea2b494a2b7812)
+        ;
+
+        
+    
+    
+            var circle_marker_25b7793e24c5d32bfd874db2b85138e6 = L.circleMarker(
+                [-8.10015655574909, -38.888961970102635],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_89c2cd2be887d0379017fe71a00d69cc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_29c1dc1af7190e686d9a4009b8f5a6b5 = $(`<div id="html_29c1dc1af7190e686d9a4009b8f5a6b5" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 25<br>         <b>Score:</b> 0.892<br>         <b>Solar:</b> 5.74 kWh/m².dia<br>         <b>Vento:</b> 8.54 m/s<br>         <b>Dist. rede:</b> 35.5 km<br>         <b>Dist. demanda:</b> 441.9 km<br>         <b>Custo conexão:</b> R$ 42,564,007         </div>`)[0];
+                popup_89c2cd2be887d0379017fe71a00d69cc.setContent(html_29c1dc1af7190e686d9a4009b8f5a6b5);
+            
+        
+
+        circle_marker_25b7793e24c5d32bfd874db2b85138e6.bindPopup(popup_89c2cd2be887d0379017fe71a00d69cc)
+        ;
+
+        
+    
+    
+            var circle_marker_9ccfc8d525d3b7e3baaa062c028581d4 = L.circleMarker(
+                [-8.570287781160866, -39.779535639237494],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_255add8a1e0bf50f9434deb09e0e835a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_60b6c006974bc1f93469e984e26f0c8a = $(`<div id="html_60b6c006974bc1f93469e984e26f0c8a" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 26<br>         <b>Score:</b> 0.890<br>         <b>Solar:</b> 5.87 kWh/m².dia<br>         <b>Vento:</b> 8.59 m/s<br>         <b>Dist. rede:</b> 33.5 km<br>         <b>Dist. demanda:</b> 543.0 km<br>         <b>Custo conexão:</b> R$ 40,247,416         </div>`)[0];
+                popup_255add8a1e0bf50f9434deb09e0e835a.setContent(html_60b6c006974bc1f93469e984e26f0c8a);
+            
+        
+
+        circle_marker_9ccfc8d525d3b7e3baaa062c028581d4.bindPopup(popup_255add8a1e0bf50f9434deb09e0e835a)
+        ;
+
+        
+    
+    
+            var circle_marker_2acc484b1e66155776a51bcd7a4f2b70 = L.circleMarker(
+                [-7.226482338147662, -38.92044737611185],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_24934c816dbce8f51e38fd236ac65716 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ac1d5ca464d0443ceeb9803837cf8118 = $(`<div id="html_ac1d5ca464d0443ceeb9803837cf8118" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 27<br>         <b>Score:</b> 0.888<br>         <b>Solar:</b> 6.21 kWh/m².dia<br>         <b>Vento:</b> 8.68 m/s<br>         <b>Dist. rede:</b> 125.7 km<br>         <b>Dist. demanda:</b> 455.9 km<br>         <b>Custo conexão:</b> R$ 150,805,905         </div>`)[0];
+                popup_24934c816dbce8f51e38fd236ac65716.setContent(html_ac1d5ca464d0443ceeb9803837cf8118);
+            
+        
+
+        circle_marker_2acc484b1e66155776a51bcd7a4f2b70.bindPopup(popup_24934c816dbce8f51e38fd236ac65716)
+        ;
+
+        
+    
+    
+            var circle_marker_07cb298f9c2fcad57101af860e745a79 = L.circleMarker(
+                [-10.303986008099724, -39.24987176904313],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_41b2a85964c0b1fe9e342831936ef19d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_935863952518068bdb51c8e4ea129e9f = $(`<div id="html_935863952518068bdb51c8e4ea129e9f" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 28<br>         <b>Score:</b> 0.887<br>         <b>Solar:</b> 6.24 kWh/m².dia<br>         <b>Vento:</b> 8.81 m/s<br>         <b>Dist. rede:</b> 168.4 km<br>         <b>Dist. demanda:</b> 546.0 km<br>         <b>Custo conexão:</b> R$ 202,138,559         </div>`)[0];
+                popup_41b2a85964c0b1fe9e342831936ef19d.setContent(html_935863952518068bdb51c8e4ea129e9f);
+            
+        
+
+        circle_marker_07cb298f9c2fcad57101af860e745a79.bindPopup(popup_41b2a85964c0b1fe9e342831936ef19d)
+        ;
+
+        
+    
+    
+            var circle_marker_f28143bff860626fff3bd16e6efb2b5c = L.circleMarker(
+                [-7.5642233637369465, -36.18832160780285],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_f91dd8a8f6e959e4a562aae2774cd96e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6809cb9f35192f08da6c7fea1efed8d7 = $(`<div id="html_6809cb9f35192f08da6c7fea1efed8d7" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 29<br>         <b>Score:</b> 0.883<br>         <b>Solar:</b> 6.58 kWh/m².dia<br>         <b>Vento:</b> 8.59 m/s<br>         <b>Dist. rede:</b> 206.0 km<br>         <b>Dist. demanda:</b> 155.0 km<br>         <b>Custo conexão:</b> R$ 247,234,405         </div>`)[0];
+                popup_f91dd8a8f6e959e4a562aae2774cd96e.setContent(html_6809cb9f35192f08da6c7fea1efed8d7);
+            
+        
+
+        circle_marker_f28143bff860626fff3bd16e6efb2b5c.bindPopup(popup_f91dd8a8f6e959e4a562aae2774cd96e)
+        ;
+
+        
+    
+    
+            var circle_marker_14035ef31d69be0aee2ed4fee399cb93 = L.circleMarker(
+                [-9.885543948807888, -39.7256489155576],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_5036ff0def4c37c8c59a31145bd345fa = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_264ade83c46867f111f059c3cfd8da15 = $(`<div id="html_264ade83c46867f111f059c3cfd8da15" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 30<br>         <b>Score:</b> 0.883<br>         <b>Solar:</b> 6.77 kWh/m².dia<br>         <b>Vento:</b> 8.68 m/s<br>         <b>Dist. rede:</b> 101.8 km<br>         <b>Dist. demanda:</b> 573.2 km<br>         <b>Custo conexão:</b> R$ 122,115,431         </div>`)[0];
+                popup_5036ff0def4c37c8c59a31145bd345fa.setContent(html_264ade83c46867f111f059c3cfd8da15);
+            
+        
+
+        circle_marker_14035ef31d69be0aee2ed4fee399cb93.bindPopup(popup_5036ff0def4c37c8c59a31145bd345fa)
+        ;
+
+        
+    
+    
+            var circle_marker_e132a3c251135b3e69bcb59bd3f4f9e0 = L.circleMarker(
+                [-7.64778731570571, -38.45227752210639],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_63fec7afd7406f26b0e7ddd69e80a42b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5b66e87b3b867e5b0d242b0c5f80c4c4 = $(`<div id="html_5b66e87b3b867e5b0d242b0c5f80c4c4" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 31<br>         <b>Score:</b> 0.881<br>         <b>Solar:</b> 6.31 kWh/m².dia<br>         <b>Vento:</b> 8.48 m/s<br>         <b>Dist. rede:</b> 59.0 km<br>         <b>Dist. demanda:</b> 396.7 km<br>         <b>Custo conexão:</b> R$ 70,782,777         </div>`)[0];
+                popup_63fec7afd7406f26b0e7ddd69e80a42b.setContent(html_5b66e87b3b867e5b0d242b0c5f80c4c4);
+            
+        
+
+        circle_marker_e132a3c251135b3e69bcb59bd3f4f9e0.bindPopup(popup_63fec7afd7406f26b0e7ddd69e80a42b)
+        ;
+
+        
+    
+    
+            var circle_marker_fd93f8b51763d9903d3b4bb396f4f9a4 = L.circleMarker(
+                [-9.904039357113017, -40.18114684568589],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_2ca56df27dd5abf8f0f7fccb5eed3277 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d09388e876b5c58bf71227ce98c1932e = $(`<div id="html_d09388e876b5c58bf71227ce98c1932e" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 32<br>         <b>Score:</b> 0.881<br>         <b>Solar:</b> 6.40 kWh/m².dia<br>         <b>Vento:</b> 8.66 m/s<br>         <b>Dist. rede:</b> 80.2 km<br>         <b>Dist. demanda:</b> 620.7 km<br>         <b>Custo conexão:</b> R$ 96,213,252         </div>`)[0];
+                popup_2ca56df27dd5abf8f0f7fccb5eed3277.setContent(html_d09388e876b5c58bf71227ce98c1932e);
+            
+        
+
+        circle_marker_fd93f8b51763d9903d3b4bb396f4f9a4.bindPopup(popup_2ca56df27dd5abf8f0f7fccb5eed3277)
+        ;
+
+        
+    
+    
+            var circle_marker_32cc68ef9666aa2ec3b0a8844cc58277 = L.circleMarker(
+                [-8.445851077146841, -36.60325476375894],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_dbdc2583088c5dcdd8ea884d20bee648 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_fa126dfb3fb723061c65e07c0d3662e0 = $(`<div id="html_fa126dfb3fb723061c65e07c0d3662e0" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 33<br>         <b>Score:</b> 0.879<br>         <b>Solar:</b> 6.01 kWh/m².dia<br>         <b>Vento:</b> 8.52 m/s<br>         <b>Dist. rede:</b> 162.3 km<br>         <b>Dist. demanda:</b> 195.3 km<br>         <b>Custo conexão:</b> R$ 194,726,853         </div>`)[0];
+                popup_dbdc2583088c5dcdd8ea884d20bee648.setContent(html_fa126dfb3fb723061c65e07c0d3662e0);
+            
+        
+
+        circle_marker_32cc68ef9666aa2ec3b0a8844cc58277.bindPopup(popup_dbdc2583088c5dcdd8ea884d20bee648)
+        ;
+
+        
+    
+    
+            var circle_marker_af8519f5e36ea6372da513b5ca199b3b = L.circleMarker(
+                [-8.501793422464043, -37.964276702708716],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_99026b79957250c2f7c2f2997f2a03e1 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f5e563291cfef674e06de2333c1c3430 = $(`<div id="html_f5e563291cfef674e06de2333c1c3430" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 34<br>         <b>Score:</b> 0.878<br>         <b>Solar:</b> 6.19 kWh/m².dia<br>         <b>Vento:</b> 8.41 m/s<br>         <b>Dist. rede:</b> 52.8 km<br>         <b>Dist. demanda:</b> 343.8 km<br>         <b>Custo conexão:</b> R$ 63,361,300         </div>`)[0];
+                popup_99026b79957250c2f7c2f2997f2a03e1.setContent(html_f5e563291cfef674e06de2333c1c3430);
+            
+        
+
+        circle_marker_af8519f5e36ea6372da513b5ca199b3b.bindPopup(popup_99026b79957250c2f7c2f2997f2a03e1)
+        ;
+
+        
+    
+    
+            var circle_marker_a888b4bfd196589d8a9f32dc2245aa00 = L.circleMarker(
+                [-10.762146098019493, -39.68524051972863],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_933bb8cec28eb349d4036ac761e553be = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_27cd7099319e109a22ff68e1c6a6081f = $(`<div id="html_27cd7099319e109a22ff68e1c6a6081f" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 35<br>         <b>Score:</b> 0.877<br>         <b>Solar:</b> 6.20 kWh/m².dia<br>         <b>Vento:</b> 8.83 m/s<br>         <b>Dist. rede:</b> 192.0 km<br>         <b>Dist. demanda:</b> 613.2 km<br>         <b>Custo conexão:</b> R$ 230,357,329         </div>`)[0];
+                popup_933bb8cec28eb349d4036ac761e553be.setContent(html_27cd7099319e109a22ff68e1c6a6081f);
+            
+        
+
+        circle_marker_a888b4bfd196589d8a9f32dc2245aa00.bindPopup(popup_933bb8cec28eb349d4036ac761e553be)
+        ;
+
+        
+    
+    
+            var circle_marker_e94095966b6f19a71efea01a8962a2b3 = L.circleMarker(
+                [-9.3514342704086, -37.47049198393459],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_73323d410ce2b75e21362a0819cc7d0f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_42a7e80754d00b94ba6df6829c1bfc3d = $(`<div id="html_42a7e80754d00b94ba6df6829c1bfc3d" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 36<br>         <b>Score:</b> 0.877<br>         <b>Solar:</b> 5.67 kWh/m².dia<br>         <b>Vento:</b> 8.59 m/s<br>         <b>Dist. rede:</b> 164.6 km<br>         <b>Dist. demanda:</b> 322.4 km<br>         <b>Custo conexão:</b> R$ 197,505,377         </div>`)[0];
+                popup_73323d410ce2b75e21362a0819cc7d0f.setContent(html_42a7e80754d00b94ba6df6829c1bfc3d);
+            
+        
+
+        circle_marker_e94095966b6f19a71efea01a8962a2b3.bindPopup(popup_73323d410ce2b75e21362a0819cc7d0f)
+        ;
+
+        
+    
+    
+            var circle_marker_a1586f4dd8e818bfe3d3634a520de585 = L.circleMarker(
+                [-8.616884280736127, -41.141372844505696],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_afebe7c5c68cced91a7a5d5b2d6faa10 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e4c43b98d027e6f7310eb61b6b6cbc67 = $(`<div id="html_e4c43b98d027e6f7310eb61b6b6cbc67" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 37<br>         <b>Score:</b> 0.877<br>         <b>Solar:</b> 5.97 kWh/m².dia<br>         <b>Vento:</b> 8.71 m/s<br>         <b>Dist. rede:</b> 98.3 km<br>         <b>Dist. demanda:</b> 692.7 km<br>         <b>Custo conexão:</b> R$ 117,953,953         </div>`)[0];
+                popup_afebe7c5c68cced91a7a5d5b2d6faa10.setContent(html_e4c43b98d027e6f7310eb61b6b6cbc67);
+            
+        
+
+        circle_marker_a1586f4dd8e818bfe3d3634a520de585.bindPopup(popup_afebe7c5c68cced91a7a5d5b2d6faa10)
+        ;
+
+        
+    
+    
+            var circle_marker_4ab153d881d37e05d75ea244c5a2fa6c = L.circleMarker(
+                [-8.08370678603389, -38.435632065734666],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_9c2fed5cc72a573043274702079244a8 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f82e4e0eb29cf2641e8ce61d0a652bec = $(`<div id="html_f82e4e0eb29cf2641e8ce61d0a652bec" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 38<br>         <b>Score:</b> 0.876<br>         <b>Solar:</b> 6.52 kWh/m².dia<br>         <b>Vento:</b> 8.36 m/s<br>         <b>Dist. rede:</b> 13.9 km<br>         <b>Dist. demanda:</b> 391.9 km<br>         <b>Custo conexão:</b> R$ 16,661,828         </div>`)[0];
+                popup_9c2fed5cc72a573043274702079244a8.setContent(html_f82e4e0eb29cf2641e8ce61d0a652bec);
+            
+        
+
+        circle_marker_4ab153d881d37e05d75ea244c5a2fa6c.bindPopup(popup_9c2fed5cc72a573043274702079244a8)
+        ;
+
+        
+    
+    
+            var circle_marker_27e29cd3795cca2029592dbb8ba48273 = L.circleMarker(
+                [-8.146950463530137, -40.24915812098262],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_9f0d4865e90ff01dfab68c3c3467c9d7 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_33f62cbed08d8ebe16a618a31889c9e5 = $(`<div id="html_33f62cbed08d8ebe16a618a31889c9e5" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 39<br>         <b>Score:</b> 0.876<br>         <b>Solar:</b> 6.05 kWh/m².dia<br>         <b>Vento:</b> 8.64 m/s<br>         <b>Dist. rede:</b> 100.2 km<br>         <b>Dist. demanda:</b> 591.9 km<br>         <b>Custo conexão:</b> R$ 120,270,544         </div>`)[0];
+                popup_9f0d4865e90ff01dfab68c3c3467c9d7.setContent(html_33f62cbed08d8ebe16a618a31889c9e5);
+            
+        
+
+        circle_marker_27e29cd3795cca2029592dbb8ba48273.bindPopup(popup_9f0d4865e90ff01dfab68c3c3467c9d7)
+        ;
+
+        
+    
+    
+            var circle_marker_00f15462a860e5b9143f43ac14439dd7 = L.circleMarker(
+                [-8.406470977075488, -35.69611921704406],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_a026433bfdaf5cf75aa134f2ab7d4767 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ac618fb369c9100a723bbf8b1d04f2fd = $(`<div id="html_ac618fb369c9100a723bbf8b1d04f2fd" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 40<br>         <b>Score:</b> 0.876<br>         <b>Solar:</b> 5.86 kWh/m².dia<br>         <b>Vento:</b> 8.60 m/s<br>         <b>Dist. rede:</b> 258.2 km<br>         <b>Dist. demanda:</b> 99.0 km<br>         <b>Custo conexão:</b> R$ 309,828,348         </div>`)[0];
+                popup_a026433bfdaf5cf75aa134f2ab7d4767.setContent(html_ac618fb369c9100a723bbf8b1d04f2fd);
+            
+        
+
+        circle_marker_00f15462a860e5b9143f43ac14439dd7.bindPopup(popup_a026433bfdaf5cf75aa134f2ab7d4767)
+        ;
+
+        
+    
+    
+            var circle_marker_fd790cda51ded9a9710d68cc03fa36a0 = L.circleMarker(
+                [-6.3265927218755476, -38.0448420438909],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_54cef3ac26d8330d97bc2c049f736a4e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2161dfac69950a664e8fd42080d4abcd = $(`<div id="html_2161dfac69950a664e8fd42080d4abcd" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 41<br>         <b>Score:</b> 0.876<br>         <b>Solar:</b> 5.84 kWh/m².dia<br>         <b>Vento:</b> 8.68 m/s<br>         <b>Dist. rede:</b> 192.3 km<br>         <b>Dist. demanda:</b> 402.5 km<br>         <b>Custo conexão:</b> R$ 230,711,720         </div>`)[0];
+                popup_54cef3ac26d8330d97bc2c049f736a4e.setContent(html_2161dfac69950a664e8fd42080d4abcd);
+            
+        
+
+        circle_marker_fd790cda51ded9a9710d68cc03fa36a0.bindPopup(popup_54cef3ac26d8330d97bc2c049f736a4e)
+        ;
+
+        
+    
+    
+            var circle_marker_03d384cf0909a903f869be516542071f = L.circleMarker(
+                [-10.820907502374254, -41.0554767657109],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_93610ce1a3675266f4d9291bfbbb0857 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_854595b2e28184731eaa88038b9d4329 = $(`<div id="html_854595b2e28184731eaa88038b9d4329" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 42<br>         <b>Score:</b> 0.875<br>         <b>Solar:</b> 5.80 kWh/m².dia<br>         <b>Vento:</b> 8.79 m/s<br>         <b>Dist. rede:</b> 127.2 km<br>         <b>Dist. demanda:</b> 749.0 km<br>         <b>Custo conexão:</b> R$ 152,650,792         </div>`)[0];
+                popup_93610ce1a3675266f4d9291bfbbb0857.setContent(html_854595b2e28184731eaa88038b9d4329);
+            
+        
+
+        circle_marker_03d384cf0909a903f869be516542071f.bindPopup(popup_93610ce1a3675266f4d9291bfbbb0857)
+        ;
+
+        
+    
+    
+            var circle_marker_e17e409371a6d8f55c84bf021f6df8bd = L.circleMarker(
+                [-8.031879676009497, -37.07585914735003],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_0431f834fd4840a1c807294585ea3093 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f1403d2c27248adf605a22463f5b831e = $(`<div id="html_f1403d2c27248adf605a22463f5b831e" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 43<br>         <b>Score:</b> 0.875<br>         <b>Solar:</b> 6.67 kWh/m².dia<br>         <b>Vento:</b> 8.41 m/s<br>         <b>Dist. rede:</b> 101.9 km<br>         <b>Dist. demanda:</b> 242.1 km<br>         <b>Custo conexão:</b> R$ 122,333,176         </div>`)[0];
+                popup_0431f834fd4840a1c807294585ea3093.setContent(html_f1403d2c27248adf605a22463f5b831e);
+            
+        
+
+        circle_marker_e17e409371a6d8f55c84bf021f6df8bd.bindPopup(popup_0431f834fd4840a1c807294585ea3093)
+        ;
+
+        
+    
+    
+            var circle_marker_ea854e403da24f32c3e477dc3baa289b = L.circleMarker(
+                [-9.371551241643933, -37.925197079065406],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_4b7cfa6f336c19a46333bb87a2e28a89 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a49e73084297fe2cb4b607cdc73b45e9 = $(`<div id="html_a49e73084297fe2cb4b607cdc73b45e9" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 44<br>         <b>Score:</b> 0.875<br>         <b>Solar:</b> 6.67 kWh/m².dia<br>         <b>Vento:</b> 8.56 m/s<br>         <b>Dist. rede:</b> 143.0 km<br>         <b>Dist. demanda:</b> 368.3 km<br>         <b>Custo conexão:</b> R$ 171,603,198         </div>`)[0];
+                popup_4b7cfa6f336c19a46333bb87a2e28a89.setContent(html_a49e73084297fe2cb4b607cdc73b45e9);
+            
+        
+
+        circle_marker_ea854e403da24f32c3e477dc3baa289b.bindPopup(popup_4b7cfa6f336c19a46333bb87a2e28a89)
+        ;
+
+        
+    
+    
+            var circle_marker_fd6bcf8365e55de1e7a81ea45cee2295 = L.circleMarker(
+                [-8.936697946305221, -37.94523161750909],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_e87732988a1b1a00709b0c13f5c8c892 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_3d9bd855e74a21f30d785edcefba8bfc = $(`<div id="html_3d9bd855e74a21f30d785edcefba8bfc" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 45<br>         <b>Score:</b> 0.874<br>         <b>Solar:</b> 6.12 kWh/m².dia<br>         <b>Vento:</b> 8.47 m/s<br>         <b>Dist. rede:</b> 97.9 km<br>         <b>Dist. demanda:</b> 352.7 km<br>         <b>Custo conexão:</b> R$ 117,482,249         </div>`)[0];
+                popup_e87732988a1b1a00709b0c13f5c8c892.setContent(html_3d9bd855e74a21f30d785edcefba8bfc);
+            
+        
+
+        circle_marker_fd6bcf8365e55de1e7a81ea45cee2295.bindPopup(popup_e87732988a1b1a00709b0c13f5c8c892)
+        ;
+
+        
+    
+    
+            var circle_marker_5fdc8ea47d8131321ec4588248c7c962 = L.circleMarker(
+                [-9.785283092212028, -37.44893001859391],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_ded0c3063a090f3c23fc624e5432efdd = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0200807b543e8ceea25490088767f22b = $(`<div id="html_0200807b543e8ceea25490088767f22b" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 46<br>         <b>Score:</b> 0.873<br>         <b>Solar:</b> 6.09 kWh/m².dia<br>         <b>Vento:</b> 8.66 m/s<br>         <b>Dist. rede:</b> 209.7 km<br>         <b>Dist. demanda:</b> 346.7 km<br>         <b>Custo conexão:</b> R$ 251,626,326         </div>`)[0];
+                popup_ded0c3063a090f3c23fc624e5432efdd.setContent(html_0200807b543e8ceea25490088767f22b);
+            
+        
+
+        circle_marker_5fdc8ea47d8131321ec4588248c7c962.bindPopup(popup_ded0c3063a090f3c23fc624e5432efdd)
+        ;
+
+        
+    
+    
+            var circle_marker_6b14c74e5f31420ac6de6776142d0d0e = L.circleMarker(
+                [-10.262590790273949, -38.3379901849887],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_921f9fa71cdbcd0dd5bedf4864e3f8dc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_64239363837ba8ae031b82a11d216ed2 = $(`<div id="html_64239363837ba8ae031b82a11d216ed2" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 47<br>         <b>Score:</b> 0.872<br>         <b>Solar:</b> 5.47 kWh/m².dia<br>         <b>Vento:</b> 8.73 m/s<br>         <b>Dist. rede:</b> 211.6 km<br>         <b>Dist. demanda:</b> 458.0 km<br>         <b>Custo conexão:</b> R$ 253,942,917         </div>`)[0];
+                popup_921f9fa71cdbcd0dd5bedf4864e3f8dc.setContent(html_64239363837ba8ae031b82a11d216ed2);
+            
+        
+
+        circle_marker_6b14c74e5f31420ac6de6776142d0d0e.bindPopup(popup_921f9fa71cdbcd0dd5bedf4864e3f8dc)
+        ;
+
+        
+    
+    
+            var circle_marker_7d33b94304e388bcb153c01b471f4a30 = L.circleMarker(
+                [-9.763721668839679, -36.993748095333494],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_182d516ace7e57a5a9af566495cf4690 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_67d3caa9206644a6f9eadd87194445e4 = $(`<div id="html_67d3caa9206644a6f9eadd87194445e4" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 48<br>         <b>Score:</b> 0.872<br>         <b>Solar:</b> 5.84 kWh/m².dia<br>         <b>Vento:</b> 8.66 m/s<br>         <b>Dist. rede:</b> 231.3 km<br>         <b>Dist. demanda:</b> 305.8 km<br>         <b>Custo conexão:</b> R$ 277,538,927         </div>`)[0];
+                popup_182d516ace7e57a5a9af566495cf4690.setContent(html_67d3caa9206644a6f9eadd87194445e4);
+            
+        
+
+        circle_marker_7d33b94304e388bcb153c01b471f4a30.bindPopup(popup_182d516ace7e57a5a9af566495cf4690)
+        ;
+
+        
+    
+    
+            var circle_marker_9d2cc8be03cd8ae70b4030d1837b8603 = L.circleMarker(
+                [-7.693240767766295, -39.811037991445964],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_b63f917fb0079e645408651a9981bc73 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b79463a954869a427a7c968bfd2a4d95 = $(`<div id="html_b79463a954869a427a7c968bfd2a4d95" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 49<br>         <b>Score:</b> 0.871<br>         <b>Solar:</b> 6.17 kWh/m².dia<br>         <b>Vento:</b> 8.62 m/s<br>         <b>Dist. rede:</b> 123.7 km<br>         <b>Dist. demanda:</b> 545.4 km<br>         <b>Custo conexão:</b> R$ 148,489,314         </div>`)[0];
+                popup_b63f917fb0079e645408651a9981bc73.setContent(html_b79463a954869a427a7c968bfd2a4d95);
+            
+        
+
+        circle_marker_9d2cc8be03cd8ae70b4030d1837b8603.bindPopup(popup_b63f917fb0079e645408651a9981bc73)
+        ;
+
+        
+    
+    
+            var circle_marker_251668af73fa05a72f84af1b770c3a86 = L.circleMarker(
+                [-9.92200063784726, -40.63669342549971],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_651af0ac5dd1402ed32446ea28266a79 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_bb0a4605d5021d044af6638db5dbb1d3 = $(`<div id="html_bb0a4605d5021d044af6638db5dbb1d3" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 50<br>         <b>Score:</b> 0.866<br>         <b>Solar:</b> 6.01 kWh/m².dia<br>         <b>Vento:</b> 8.55 m/s<br>         <b>Dist. rede:</b> 58.6 km<br>         <b>Dist. demanda:</b> 668.5 km<br>         <b>Custo conexão:</b> R$ 70,311,073         </div>`)[0];
+                popup_651af0ac5dd1402ed32446ea28266a79.setContent(html_bb0a4605d5021d044af6638db5dbb1d3);
+            
+        
+
+        circle_marker_251668af73fa05a72f84af1b770c3a86.bindPopup(popup_651af0ac5dd1402ed32446ea28266a79)
+        ;
+
+        
+    
+    
+            var circle_marker_d4c14cec62a6e8e8551f8c2bd09748d5 = L.circleMarker(
+                [-8.483571336877231, -37.510561202716666],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_a7cb6ab3297c26066fe5ab9899166ff7 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0a052234aa29d128cc17a3c3c2fab123 = $(`<div id="html_0a052234aa29d128cc17a3c3c2fab123" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 51<br>         <b>Score:</b> 0.864<br>         <b>Solar:</b> 6.72 kWh/m².dia<br>         <b>Vento:</b> 8.33 m/s<br>         <b>Dist. rede:</b> 77.5 km<br>         <b>Dist. demanda:</b> 294.1 km<br>         <b>Custo conexão:</b> R$ 92,970,369         </div>`)[0];
+                popup_a7cb6ab3297c26066fe5ab9899166ff7.setContent(html_0a052234aa29d128cc17a3c3c2fab123);
+            
+        
+
+        circle_marker_d4c14cec62a6e8e8551f8c2bd09748d5.bindPopup(popup_a7cb6ab3297c26066fe5ab9899166ff7)
+        ;
+
+        
+    
+    
+            var circle_marker_ec373410c79d09b6d6ba33a6c35f37be = L.circleMarker(
+                [-6.3130755548214665, -37.593169243593344],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_1b8e1ee130512524904748cd380d5d74 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ae64383fcd6aac0d6adb058c1e96153a = $(`<div id="html_ae64383fcd6aac0d6adb058c1e96153a" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 52<br>         <b>Score:</b> 0.864<br>         <b>Solar:</b> 5.81 kWh/m².dia<br>         <b>Vento:</b> 8.59 m/s<br>         <b>Dist. rede:</b> 199.1 km<br>         <b>Dist. demanda:</b> 361.1 km<br>         <b>Custo conexão:</b> R$ 238,883,709         </div>`)[0];
+                popup_1b8e1ee130512524904748cd380d5d74.setContent(html_ae64383fcd6aac0d6adb058c1e96153a);
+            
+        
+
+        circle_marker_ec373410c79d09b6d6ba33a6c35f37be.bindPopup(popup_1b8e1ee130512524904748cd380d5d74)
+        ;
+
+        
+    
+    
+            var circle_marker_db9bd9be93093671e7dbca130212eb43 = L.circleMarker(
+                [-10.343202532069542, -40.16197661062071],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_e38e805efdaba1d64a0ce19c62067f25 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5066117aa973cce0feaa62725e4e6e6c = $(`<div id="html_5066117aa973cce0feaa62725e4e6e6c" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 53<br>         <b>Score:</b> 0.861<br>         <b>Solar:</b> 5.82 kWh/m².dia<br>         <b>Vento:</b> 8.61 m/s<br>         <b>Dist. rede:</b> 125.3 km<br>         <b>Dist. demanda:</b> 637.5 km<br>         <b>Custo conexão:</b> R$ 150,334,201         </div>`)[0];
+                popup_e38e805efdaba1d64a0ce19c62067f25.setContent(html_5066117aa973cce0feaa62725e4e6e6c);
+            
+        
+
+        circle_marker_db9bd9be93093671e7dbca130212eb43.bindPopup(popup_e38e805efdaba1d64a0ce19c62067f25)
+        ;
+
+        
+    
+    
+            var circle_marker_56777b46c0fb205085d2873944c00410 = L.circleMarker(
+                [-11.086466061670784, -37.37805923074643],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_9c56bb1dc790817562cb0c12594858a5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9393af41a2b6a2895fb562fc872c220e = $(`<div id="html_9393af41a2b6a2895fb562fc872c220e" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 54<br>         <b>Score:</b> 0.859<br>         <b>Solar:</b> 5.72 kWh/m².dia<br>         <b>Vento:</b> 8.86 m/s<br>         <b>Dist. rede:</b> 345.0 km<br>         <b>Dist. demanda:</b> 445.9 km<br>         <b>Custo conexão:</b> R$ 413,989,173         </div>`)[0];
+                popup_9c56bb1dc790817562cb0c12594858a5.setContent(html_9393af41a2b6a2895fb562fc872c220e);
+            
+        
+
+        circle_marker_56777b46c0fb205085d2873944c00410.bindPopup(popup_9c56bb1dc790817562cb0c12594858a5)
+        ;
+
+        
+    
+    
+            var circle_marker_897829190f0c7911815891f4fa6d2ac8 = L.circleMarker(
+                [-8.049562646681391, -37.52907995049793],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_6c5febaf409a40249deca623d1f08f2c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_86b743d48cfe8ae07eb6b48fd0947eca = $(`<div id="html_86b743d48cfe8ae07eb6b48fd0947eca" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 55<br>         <b>Score:</b> 0.859<br>         <b>Solar:</b> 5.98 kWh/m².dia<br>         <b>Vento:</b> 8.25 m/s<br>         <b>Dist. rede:</b> 52.2 km<br>         <b>Dist. demanda:</b> 292.0 km<br>         <b>Custo conexão:</b> R$ 62,672,777         </div>`)[0];
+                popup_6c5febaf409a40249deca623d1f08f2c.setContent(html_86b743d48cfe8ae07eb6b48fd0947eca);
+            
+        
+
+        circle_marker_897829190f0c7911815891f4fa6d2ac8.bindPopup(popup_6c5febaf409a40249deca623d1f08f2c)
+        ;
+
+        
+    
+    
+            var circle_marker_519fac8de7499738ac54d056b14892e1 = L.circleMarker(
+                [-10.652801755399995, -37.40272032433792],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_2d6f8825812887da7b571a1b9148b90b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c254edd1d0a9384c31158f0a66b2000c = $(`<div id="html_c254edd1d0a9384c31158f0a66b2000c" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 56<br>         <b>Score:</b> 0.858<br>         <b>Solar:</b> 6.01 kWh/m².dia<br>         <b>Vento:</b> 8.75 m/s<br>         <b>Dist. rede:</b> 299.9 km<br>         <b>Dist. demanda:</b> 409.4 km<br>         <b>Custo conexão:</b> R$ 359,868,224         </div>`)[0];
+                popup_2d6f8825812887da7b571a1b9148b90b.setContent(html_c254edd1d0a9384c31158f0a66b2000c);
+            
+        
+
+        circle_marker_519fac8de7499738ac54d056b14892e1.bindPopup(popup_2d6f8825812887da7b571a1b9148b90b)
+        ;
+
+        
+    
+    
+            var circle_marker_1e859f93db209254f50caf9551b3b216 = L.circleMarker(
+                [-6.816046417973774, -39.83904633202991],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_bf62cc56c358c9f2f131df038310bdae = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f2dfbff2c34c2ecbebd8956f2ccbd182 = $(`<div id="html_f2dfbff2c34c2ecbebd8956f2ccbd182" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 57<br>         <b>Score:</b> 0.857<br>         <b>Solar:</b> 6.57 kWh/m².dia<br>         <b>Vento:</b> 8.70 m/s<br>         <b>Dist. rede:</b> 213.9 km<br>         <b>Dist. demanda:</b> 565.6 km<br>         <b>Custo conexão:</b> R$ 256,731,212         </div>`)[0];
+                popup_bf62cc56c358c9f2f131df038310bdae.setContent(html_f2dfbff2c34c2ecbebd8956f2ccbd182);
+            
+        
+
+        circle_marker_1e859f93db209254f50caf9551b3b216.bindPopup(popup_bf62cc56c358c9f2f131df038310bdae)
+        ;
+
+        
+    
+    
+            var circle_marker_09345f1d9261e42660cf74fd27382f36 = L.circleMarker(
+                [-9.498614987617298, -41.109461482762796],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_eb9a7a2441edf6878808e9ffd5688ffe = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2dd39b542d4844adfef64976a1b29087 = $(`<div id="html_2dd39b542d4844adfef64976a1b29087" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 58<br>         <b>Score:</b> 0.857<br>         <b>Solar:</b> 5.28 kWh/m².dia<br>         <b>Vento:</b> 8.42 m/s<br>         <b>Dist. rede:</b> 8.1 km<br>         <b>Dist. demanda:</b> 705.2 km<br>         <b>Custo conexão:</b> R$ 9,712,055         </div>`)[0];
+                popup_eb9a7a2441edf6878808e9ffd5688ffe.setContent(html_2dd39b542d4844adfef64976a1b29087);
+            
+        
+
+        circle_marker_09345f1d9261e42660cf74fd27382f36.bindPopup(popup_eb9a7a2441edf6878808e9ffd5688ffe)
+        ;
+
+        
+    
+    
+            var circle_marker_c5f4051cbc56b6bfadb0e5cef9b3e4c8 = L.circleMarker(
+                [-10.741398992823948, -39.228612101270016],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_fda33b0b2025b05c001d712a4fae8f96 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6a40f8b9feefd30e4286dc91601ed18a = $(`<div id="html_6a40f8b9feefd30e4286dc91601ed18a" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 59<br>         <b>Score:</b> 0.857<br>         <b>Solar:</b> 6.38 kWh/m².dia<br>         <b>Vento:</b> 8.70 m/s<br>         <b>Dist. rede:</b> 213.5 km<br>         <b>Dist. demanda:</b> 569.5 km<br>         <b>Custo conexão:</b> R$ 256,259,508         </div>`)[0];
+                popup_fda33b0b2025b05c001d712a4fae8f96.setContent(html_6a40f8b9feefd30e4286dc91601ed18a);
+            
+        
+
+        circle_marker_c5f4051cbc56b6bfadb0e5cef9b3e4c8.bindPopup(popup_fda33b0b2025b05c001d712a4fae8f96)
+        ;
+
+        
+    
+    
+            var circle_marker_ceaa6d88829e87f3811cd0e7d0f8163b = L.circleMarker(
+                [-6.6860963560168285, -35.77076895130742],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_0f566b1f2f4b29ec0f61943ab5004e94 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e260b8a79845a04767bbcf3baaac9085 = $(`<div id="html_e260b8a79845a04767bbcf3baaac9085" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 60<br>         <b>Score:</b> 0.856<br>         <b>Solar:</b> 6.34 kWh/m².dia<br>         <b>Vento:</b> 8.58 m/s<br>         <b>Dist. rede:</b> 289.1 km<br>         <b>Dist. demanda:</b> 186.8 km<br>         <b>Custo conexão:</b> R$ 346,887,813         </div>`)[0];
+                popup_0f566b1f2f4b29ec0f61943ab5004e94.setContent(html_e260b8a79845a04767bbcf3baaac9085);
+            
+        
+
+        circle_marker_ceaa6d88829e87f3811cd0e7d0f8163b.bindPopup(popup_0f566b1f2f4b29ec0f61943ab5004e94)
+        ;
+
+        
+    
+    
+            var circle_marker_b8055e82a991b2c212e671fea85ea8de = L.circleMarker(
+                [-6.352657137905193, -38.94825375453564],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_488469ee6613a6e0e77166e1ee167416 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c07dedd35849dc15bb8a105a824cc748 = $(`<div id="html_c07dedd35849dc15bb8a105a824cc748" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 61<br>         <b>Score:</b> 0.856<br>         <b>Solar:</b> 6.49 kWh/m².dia<br>         <b>Vento:</b> 8.64 m/s<br>         <b>Dist. rede:</b> 215.9 km<br>         <b>Dist. demanda:</b> 490.3 km<br>         <b>Custo conexão:</b> R$ 259,047,803         </div>`)[0];
+                popup_488469ee6613a6e0e77166e1ee167416.setContent(html_c07dedd35849dc15bb8a105a824cc748);
+            
+        
+
+        circle_marker_b8055e82a991b2c212e671fea85ea8de.bindPopup(popup_488469ee6613a6e0e77166e1ee167416)
+        ;
+
+        
+    
+    
+            var circle_marker_66bdde5a855c37b2cb6a1f3f824bcfe0 = L.circleMarker(
+                [-10.219073172984292, -37.42634163980989],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_8e04dbab08cb7e04dd68345f6f17aa11 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d5a8ffe8152af69dacd7efd83ab920fd = $(`<div id="html_d5a8ffe8152af69dacd7efd83ab920fd" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 62<br>         <b>Score:</b> 0.855<br>         <b>Solar:</b> 6.36 kWh/m².dia<br>         <b>Vento:</b> 8.63 m/s<br>         <b>Dist. rede:</b> 254.8 km<br>         <b>Dist. demanda:</b> 376.0 km<br>         <b>Custo conexão:</b> R$ 305,747,275         </div>`)[0];
+                popup_8e04dbab08cb7e04dd68345f6f17aa11.setContent(html_d5a8ffe8152af69dacd7efd83ab920fd);
+            
+        
+
+        circle_marker_66bdde5a855c37b2cb6a1f3f824bcfe0.bindPopup(popup_8e04dbab08cb7e04dd68345f6f17aa11)
+        ;
+
+        
+    
+    
+            var circle_marker_fc66ab83566d4824b44cf429f050ab22 = L.circleMarker(
+                [-6.7617147411023995, -38.030667807717045],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_fd2bbdc17990f43a2078431f45dd8761 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ebd8b1f6aef6e3c95c65c4a05792d13a = $(`<div id="html_ebd8b1f6aef6e3c95c65c4a05792d13a" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 63<br>         <b>Score:</b> 0.855<br>         <b>Solar:</b> 5.87 kWh/m².dia<br>         <b>Vento:</b> 8.43 m/s<br>         <b>Dist. rede:</b> 142.3 km<br>         <b>Dist. demanda:</b> 378.5 km<br>         <b>Custo conexão:</b> R$ 170,714,704         </div>`)[0];
+                popup_fd2bbdc17990f43a2078431f45dd8761.setContent(html_ebd8b1f6aef6e3c95c65c4a05792d13a);
+            
+        
+
+        circle_marker_fc66ab83566d4824b44cf429f050ab22.bindPopup(popup_fd2bbdc17990f43a2078431f45dd8761)
+        ;
+
+        
+    
+    
+            var circle_marker_b32c69b67968b3ffcf79833957af005a = L.circleMarker(
+                [-8.066840266505615, -37.98233782054584],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_7233d6afb514aaecc03ba89bd132121d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e160a880c14aaac46500d67f2bcc1bab = $(`<div id="html_e160a880c14aaac46500d67f2bcc1bab" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 64<br>         <b>Score:</b> 0.854<br>         <b>Solar:</b> 5.80 kWh/m².dia<br>         <b>Vento:</b> 8.16 m/s<br>         <b>Dist. rede:</b> 7.7 km<br>         <b>Dist. demanda:</b> 342.0 km<br>         <b>Custo conexão:</b> R$ 9,240,351         </div>`)[0];
+                popup_7233d6afb514aaecc03ba89bd132121d.setContent(html_e160a880c14aaac46500d67f2bcc1bab);
+            
+        
+
+        circle_marker_b32c69b67968b3ffcf79833957af005a.bindPopup(popup_7233d6afb514aaecc03ba89bd132121d)
+        ;
+
+        
+    
+    
+            var circle_marker_40345aadd0d6625b5f9833892a2e024e = L.circleMarker(
+                [-7.2546609299983364, -39.82547677324074],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_a092082fe7348967c13117efa2b131fc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9516c1992c141f980bc5d5a1eb1a6b05 = $(`<div id="html_9516c1992c141f980bc5d5a1eb1a6b05" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 65<br>         <b>Score:</b> 0.853<br>         <b>Solar:</b> 6.57 kWh/m².dia<br>         <b>Vento:</b> 8.58 m/s<br>         <b>Dist. rede:</b> 168.8 km<br>         <b>Dist. demanda:</b> 553.3 km<br>         <b>Custo conexão:</b> R$ 202,610,263         </div>`)[0];
+                popup_a092082fe7348967c13117efa2b131fc.setContent(html_9516c1992c141f980bc5d5a1eb1a6b05);
+            
+        
+
+        circle_marker_40345aadd0d6625b5f9833892a2e024e.bindPopup(popup_a092082fe7348967c13117efa2b131fc)
+        ;
+
+        
+    
+    
+            var circle_marker_6fc9efa9ee46a28634e2844f84ff4898 = L.circleMarker(
+                [-10.3801863826233, -41.07429431119138],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_7965579e0d42cab40ffcc7c8cbd60641 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_30d2c9d76a6128db1d4db184c034b396 = $(`<div id="html_30d2c9d76a6128db1d4db184c034b396" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 66<br>         <b>Score:</b> 0.852<br>         <b>Solar:</b> 6.22 kWh/m².dia<br>         <b>Vento:</b> 8.53 m/s<br>         <b>Dist. rede:</b> 82.1 km<br>         <b>Dist. demanda:</b> 731.3 km<br>         <b>Custo conexão:</b> R$ 98,529,843         </div>`)[0];
+                popup_7965579e0d42cab40ffcc7c8cbd60641.setContent(html_30d2c9d76a6128db1d4db184c034b396);
+            
+        
+
+        circle_marker_6fc9efa9ee46a28634e2844f84ff4898.bindPopup(popup_7965579e0d42cab40ffcc7c8cbd60641)
+        ;
+
+        
+    
+    
+            var circle_marker_d06aec44f6046dab9bb023678325660f = L.circleMarker(
+                [-8.97366093232854, -38.85376109027012],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_78adb7651a7026ccdaed242d726781ae = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8bc5c7ad967b3fc504c4fc8c7bdb87a4 = $(`<div id="html_8bc5c7ad967b3fc504c4fc8c7bdb87a4" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 67<br>         <b>Score:</b> 0.851<br>         <b>Solar:</b> 6.07 kWh/m².dia<br>         <b>Vento:</b> 8.30 m/s<br>         <b>Dist. rede:</b> 54.7 km<br>         <b>Dist. demanda:</b> 450.3 km<br>         <b>Custo conexão:</b> R$ 65,677,891         </div>`)[0];
+                popup_78adb7651a7026ccdaed242d726781ae.setContent(html_8bc5c7ad967b3fc504c4fc8c7bdb87a4);
+            
+        
+
+        circle_marker_d06aec44f6046dab9bb023678325660f.bindPopup(popup_78adb7651a7026ccdaed242d726781ae)
+        ;
+
+        
+    
+    
+            var circle_marker_a2d2eb040911df5a008433113db77f4f = L.circleMarker(
+                [-8.955410535561125, -38.39947435964319],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_eda88c46d3e3191855123c732561b3c1 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_dd7f7bd11dda9219650dd1e48a4d5607 = $(`<div id="html_dd7f7bd11dda9219650dd1e48a4d5607" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 68<br>         <b>Score:</b> 0.851<br>         <b>Solar:</b> 6.11 kWh/m².dia<br>         <b>Vento:</b> 8.30 m/s<br>         <b>Dist. rede:</b> 76.3 km<br>         <b>Dist. demanda:</b> 401.3 km<br>         <b>Custo conexão:</b> R$ 91,580,070         </div>`)[0];
+                popup_eda88c46d3e3191855123c732561b3c1.setContent(html_dd7f7bd11dda9219650dd1e48a4d5607);
+            
+        
+
+        circle_marker_a2d2eb040911df5a008433113db77f4f.bindPopup(popup_eda88c46d3e3191855123c732561b3c1)
+        ;
+
+        
+    
+    
+            var circle_marker_679e9e18018e34bc1c2821e6a8d2f10d = L.circleMarker(
+                [-7.63184105920951, -37.999420160779316],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_676d9cfdb35c1f8daf947a91bae4a817 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_de47efcf80abc17adcef2988f7931a80 = $(`<div id="html_de47efcf80abc17adcef2988f7931a80" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 69<br>         <b>Score:</b> 0.848<br>         <b>Solar:</b> 6.35 kWh/m².dia<br>         <b>Vento:</b> 8.19 m/s<br>         <b>Dist. rede:</b> 42.3 km<br>         <b>Dist. demanda:</b> 347.4 km<br>         <b>Custo conexão:</b> R$ 50,741,851         </div>`)[0];
+                popup_676d9cfdb35c1f8daf947a91bae4a817.setContent(html_de47efcf80abc17adcef2988f7931a80);
+            
+        
+
+        circle_marker_679e9e18018e34bc1c2821e6a8d2f10d.bindPopup(popup_676d9cfdb35c1f8daf947a91bae4a817)
+        ;
+
+        
+    
+    
+            var circle_marker_769a2725a65f739e3e56690e72b6b2cc = L.circleMarker(
+                [-5.903716140620343, -38.509412019735976],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_dcb0c5c172a2b0ee6b7bd36068b07cd5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_83844f918a8d0b4e7becc82f4207b36d = $(`<div id="html_83844f918a8d0b4e7becc82f4207b36d" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 70<br>         <b>Score:</b> 0.847<br>         <b>Solar:</b> 5.77 kWh/m².dia<br>         <b>Vento:</b> 8.62 m/s<br>         <b>Dist. rede:</b> 247.0 km<br>         <b>Dist. demanda:</b> 471.7 km<br>         <b>Custo conexão:</b> R$ 296,436,766         </div>`)[0];
+                popup_dcb0c5c172a2b0ee6b7bd36068b07cd5.setContent(html_83844f918a8d0b4e7becc82f4207b36d);
+            
+        
+
+        circle_marker_769a2725a65f739e3e56690e72b6b2cc.bindPopup(popup_dcb0c5c172a2b0ee6b7bd36068b07cd5)
+        ;
+
+        
+    
+    
+            var circle_marker_179140e50083f302f5e241622e93d689 = L.circleMarker(
+                [-9.057768586652644, -41.12582166337439],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_388f91fca3b93b8d791e2247238a98d1 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c3767ce1ee754d3f568d6dbfaf0fedef = $(`<div id="html_c3767ce1ee754d3f568d6dbfaf0fedef" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 71<br>         <b>Score:</b> 0.846<br>         <b>Solar:</b> 5.60 kWh/m².dia<br>         <b>Vento:</b> 8.42 m/s<br>         <b>Dist. rede:</b> 53.2 km<br>         <b>Dist. demanda:</b> 697.2 km<br>         <b>Custo conexão:</b> R$ 63,833,004         </div>`)[0];
+                popup_388f91fca3b93b8d791e2247238a98d1.setContent(html_c3767ce1ee754d3f568d6dbfaf0fedef);
+            
+        
+
+        circle_marker_179140e50083f302f5e241622e93d689.bindPopup(popup_388f91fca3b93b8d791e2247238a98d1)
+        ;
+
+        
+    
+    
+            var circle_marker_a438bd4950814f8b6a85bd3b09c729d5 = L.circleMarker(
+                [-9.28828085372858, -36.10668277792728],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_c819c65918421fcecfb1270e329d9708 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_1b814a496fd1906bc8f1b8e5dc9a607b = $(`<div id="html_1b814a496fd1906bc8f1b8e5dc9a607b" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 72<br>         <b>Score:</b> 0.844<br>         <b>Solar:</b> 6.77 kWh/m².dia<br>         <b>Vento:</b> 8.44 m/s<br>         <b>Dist. rede:</b> 256.0 km<br>         <b>Dist. demanda:</b> 197.3 km<br>         <b>Custo conexão:</b> R$ 307,225,164         </div>`)[0];
+                popup_c819c65918421fcecfb1270e329d9708.setContent(html_1b814a496fd1906bc8f1b8e5dc9a607b);
+            
+        
+
+        circle_marker_a438bd4950814f8b6a85bd3b09c729d5.bindPopup(popup_c819c65918421fcecfb1270e329d9708)
+        ;
+
+        
+    
+    
+            var circle_marker_7d4da8b07fcd23c1dcc8fde0db628678 = L.circleMarker(
+                [-7.735009583434078, -41.1700664934524],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_9ac640cff63073465bf6bbcf8d8c3ffc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2a9eae657eaec9774323fa092d8ed91b = $(`<div id="html_2a9eae657eaec9774323fa092d8ed91b" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 73<br>         <b>Score:</b> 0.844<br>         <b>Solar:</b> 6.74 kWh/m².dia<br>         <b>Vento:</b> 8.64 m/s<br>         <b>Dist. rede:</b> 188.5 km<br>         <b>Dist. demanda:</b> 694.6 km<br>         <b>Custo conexão:</b> R$ 226,195,851         </div>`)[0];
+                popup_9ac640cff63073465bf6bbcf8d8c3ffc.setContent(html_2a9eae657eaec9774323fa092d8ed91b);
+            
+        
+
+        circle_marker_7d4da8b07fcd23c1dcc8fde0db628678.bindPopup(popup_9ac640cff63073465bf6bbcf8d8c3ffc)
+        ;
+
+        
+    
+    
+            var circle_marker_ec157df6754555426debc16bb273c277 = L.circleMarker(
+                [-10.857114187372778, -41.969245214234846],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_083681e95dfebc05728999cb436de0e0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ae4f1be2b49fe7968a664255e8405c69 = $(`<div id="html_ae4f1be2b49fe7968a664255e8405c69" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 74<br>         <b>Score:</b> 0.844<br>         <b>Solar:</b> 5.75 kWh/m².dia<br>         <b>Vento:</b> 8.55 m/s<br>         <b>Dist. rede:</b> 84.0 km<br>         <b>Dist. demanda:</b> 842.2 km<br>         <b>Custo conexão:</b> R$ 100,846,434         </div>`)[0];
+                popup_083681e95dfebc05728999cb436de0e0.setContent(html_ae4f1be2b49fe7968a664255e8405c69);
+            
+        
+
+        circle_marker_ec157df6754555426debc16bb273c277.bindPopup(popup_083681e95dfebc05728999cb436de0e0)
+        ;
+
+        
+    
+    
+            var circle_marker_58611fd9cf9a1cec763460eaf49d85f9 = L.circleMarker(
+                [-6.775825503613363, -38.482725629493416],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_7060e9451c8162e12e72ed6ab77f64d1 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_19d220223219c7723491dbf420faf3cc = $(`<div id="html_19d220223219c7723491dbf420faf3cc" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 75<br>         <b>Score:</b> 0.843<br>         <b>Solar:</b> 6.39 kWh/m².dia<br>         <b>Vento:</b> 8.39 m/s<br>         <b>Dist. rede:</b> 150.2 km<br>         <b>Dist. demanda:</b> 424.2 km<br>         <b>Custo conexão:</b> R$ 180,294,152         </div>`)[0];
+                popup_7060e9451c8162e12e72ed6ab77f64d1.setContent(html_19d220223219c7723491dbf420faf3cc);
+            
+        
+
+        circle_marker_58611fd9cf9a1cec763460eaf49d85f9.bindPopup(popup_7060e9451c8162e12e72ed6ab77f64d1)
+        ;
+
+        
+    
+    
+            var circle_marker_4f86f1585c7c5eefc1eb5c7eb6cc6c04 = L.circleMarker(
+                [-5.927363678103403, -39.41218139772272],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_c5e2fef794e175564ddf2f43cc13e018 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_fa8c6cf949d5116c8fdf100fa2e1255f = $(`<div id="html_fa8c6cf949d5116c8fdf100fa2e1255f" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 76<br>         <b>Score:</b> 0.843<br>         <b>Solar:</b> 6.30 kWh/m².dia<br>         <b>Vento:</b> 8.71 m/s<br>         <b>Dist. rede:</b> 282.6 km<br>         <b>Dist. demanda:</b> 557.5 km<br>         <b>Custo conexão:</b> R$ 339,070,931         </div>`)[0];
+                popup_c5e2fef794e175564ddf2f43cc13e018.setContent(html_fa8c6cf949d5116c8fdf100fa2e1255f);
+            
+        
+
+        circle_marker_4f86f1585c7c5eefc1eb5c7eb6cc6c04.bindPopup(popup_c5e2fef794e175564ddf2f43cc13e018)
+        ;
+
+        
+    
+    
+            var circle_marker_ab1bf7fc1c687406f66eb22a48c1494d = L.circleMarker(
+                [-7.678492356034505, -39.3580871092491],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_6dce725bb4cb0fbea2e4bc8d20593421 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e1db43c2f57469a1115f2656e0d822ce = $(`<div id="html_e1db43c2f57469a1115f2656e0d822ce" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 77<br>         <b>Score:</b> 0.842<br>         <b>Solar:</b> 6.07 kWh/m².dia<br>         <b>Vento:</b> 8.35 m/s<br>         <b>Dist. rede:</b> 102.2 km<br>         <b>Dist. demanda:</b> 495.7 km<br>         <b>Custo conexão:</b> R$ 122,587,135         </div>`)[0];
+                popup_6dce725bb4cb0fbea2e4bc8d20593421.setContent(html_e1db43c2f57469a1115f2656e0d822ce);
+            
+        
+
+        circle_marker_ab1bf7fc1c687406f66eb22a48c1494d.bindPopup(popup_6dce725bb4cb0fbea2e4bc8d20593421)
+        ;
+
+        
+    
+    
+            var circle_marker_c1f8f3cdf93be7d432fe33aba268e398 = L.circleMarker(
+                [-9.696146603345209, -35.628544217641874],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_6568b28330b52c76dcc029a0f0263fc9 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2252c6bddcb3247fec8e4ddba0874c5f = $(`<div id="html_2252c6bddcb3247fec8e4ddba0874c5f" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 78<br>         <b>Score:</b> 0.842<br>         <b>Solar:</b> 6.35 kWh/m².dia<br>         <b>Vento:</b> 8.56 m/s<br>         <b>Dist. rede:</b> 326.3 km<br>         <b>Dist. demanda:</b> 208.5 km<br>         <b>Custo conexão:</b> R$ 391,587,082         </div>`)[0];
+                popup_6568b28330b52c76dcc029a0f0263fc9.setContent(html_2252c6bddcb3247fec8e4ddba0874c5f);
+            
+        
+
+        circle_marker_c1f8f3cdf93be7d432fe33aba268e398.bindPopup(popup_6568b28330b52c76dcc029a0f0263fc9)
+        ;
+
+        
+    
+    
+            var circle_marker_8fdb681c6cfa53025008a8260587dceb = L.circleMarker(
+                [-7.9953211524881915, -36.16953138651933],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_da9fb1280881d638e4f62f80d603417e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c4c4b4071d0e83882670bcb8e5547bb8 = $(`<div id="html_c4c4b4071d0e83882670bcb8e5547bb8" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 79<br>         <b>Score:</b> 0.842<br>         <b>Solar:</b> 5.92 kWh/m².dia<br>         <b>Vento:</b> 8.29 m/s<br>         <b>Dist. rede:</b> 201.8 km<br>         <b>Dist. demanda:</b> 142.3 km<br>         <b>Custo conexão:</b> R$ 242,157,932         </div>`)[0];
+                popup_da9fb1280881d638e4f62f80d603417e.setContent(html_c4c4b4071d0e83882670bcb8e5547bb8);
+            
+        
+
+        circle_marker_8fdb681c6cfa53025008a8260587dceb.bindPopup(popup_da9fb1280881d638e4f62f80d603417e)
+        ;
+
+        
+    
+    
+            var circle_marker_a68e4dd809087c697c7205ef107845b4 = L.circleMarker(
+                [-9.266318650539088, -35.65218463825931],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_be0e4da8ada64d5bc35f9858aeddc58d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_594ad08f53a9dfb2baabdbd0e8e4228b = $(`<div id="html_594ad08f53a9dfb2baabdbd0e8e4228b" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 80<br>         <b>Score:</b> 0.841<br>         <b>Solar:</b> 6.15 kWh/m².dia<br>         <b>Vento:</b> 8.47 m/s<br>         <b>Dist. rede:</b> 297.0 km<br>         <b>Dist. demanda:</b> 165.1 km<br>         <b>Custo conexão:</b> R$ 356,405,430         </div>`)[0];
+                popup_be0e4da8ada64d5bc35f9858aeddc58d.setContent(html_594ad08f53a9dfb2baabdbd0e8e4228b);
+            
+        
+
+        circle_marker_a68e4dd809087c697c7205ef107845b4.bindPopup(popup_be0e4da8ada64d5bc35f9858aeddc58d)
+        ;
+
+        
+    
+    
+            var circle_marker_7ba5fda53dfd2920ba1493320522f48f = L.circleMarker(
+                [-9.410343480312253, -38.83475473236793],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_434065b172995fd7b9329a0a21b30774 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b07c86849c5ab37a1d030b99922d3972 = $(`<div id="html_b07c86849c5ab37a1d030b99922d3972" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 81<br>         <b>Score:</b> 0.840<br>         <b>Solar:</b> 6.28 kWh/m².dia<br>         <b>Vento:</b> 8.31 m/s<br>         <b>Dist. rede:</b> 99.8 km<br>         <b>Dist. demanda:</b> 462.6 km<br>         <b>Custo conexão:</b> R$ 119,798,840         </div>`)[0];
+                popup_434065b172995fd7b9329a0a21b30774.setContent(html_b07c86849c5ab37a1d030b99922d3972);
+            
+        
+
+        circle_marker_7ba5fda53dfd2920ba1493320522f48f.bindPopup(popup_434065b172995fd7b9329a0a21b30774)
+        ;
+
+        
+    
+    
+            var circle_marker_4c54f6ef88b34b38a76181000cc000c5 = L.circleMarker(
+                [-9.243912715484967, -35.19774032968091],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_1c6a782670ac97ed6844b63fc1e87bec = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_74a4efb13c9985dc75030b18d8be32d1 = $(`<div id="html_74a4efb13c9985dc75030b18d8be32d1" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 82<br>         <b>Score:</b> 0.840<br>         <b>Solar:</b> 5.77 kWh/m².dia<br>         <b>Vento:</b> 8.53 m/s<br>         <b>Dist. rede:</b> 340.4 km<br>         <b>Dist. demanda:</b> 143.5 km<br>         <b>Custo conexão:</b> R$ 408,487,894         </div>`)[0];
+                popup_1c6a782670ac97ed6844b63fc1e87bec.setContent(html_74a4efb13c9985dc75030b18d8be32d1);
+            
+        
+
+        circle_marker_4c54f6ef88b34b38a76181000cc000c5.bindPopup(popup_1c6a782670ac97ed6844b63fc1e87bec)
+        ;
+
+        
+    
+    
+            var circle_marker_c12a35d67861dc386f2f05236e115118 = L.circleMarker(
+                [-7.133074965049398, -36.206041213351796],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_885924180f64702d05a27068ba07dd0f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_45f089d177de746100c1200910f86513 = $(`<div id="html_45f089d177de746100c1200910f86513" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 83<br>         <b>Score:</b> 0.838<br>         <b>Solar:</b> 6.85 kWh/m².dia<br>         <b>Vento:</b> 8.33 m/s<br>         <b>Dist. rede:</b> 221.8 km<br>         <b>Dist. demanda:</b> 181.1 km<br>         <b>Custo conexão:</b> R$ 266,100,054         </div>`)[0];
+                popup_885924180f64702d05a27068ba07dd0f.setContent(html_45f089d177de746100c1200910f86513);
+            
+        
+
+        circle_marker_c12a35d67861dc386f2f05236e115118.bindPopup(popup_885924180f64702d05a27068ba07dd0f)
+        ;
+
+        
+    
+    
+            var circle_marker_1abe0e9713f7360aa58b04e9bc2952ca = L.circleMarker(
+                [-9.330845646531769, -37.01583730466488],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_257fef580cf8d0d469ffe1e21804f20c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_44f0c8c90b35ecffbfbb5a334731e957 = $(`<div id="html_44f0c8c90b35ecffbfbb5a334731e957" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 84<br>         <b>Score:</b> 0.838<br>         <b>Solar:</b> 6.15 kWh/m².dia<br>         <b>Vento:</b> 8.33 m/s<br>         <b>Dist. rede:</b> 187.7 km<br>         <b>Dist. demanda:</b> 278.0 km<br>         <b>Custo conexão:</b> R$ 225,193,791         </div>`)[0];
+                popup_257fef580cf8d0d469ffe1e21804f20c.setContent(html_44f0c8c90b35ecffbfbb5a334731e957);
+            
+        
+
+        circle_marker_1abe0e9713f7360aa58b04e9bc2952ca.bindPopup(popup_257fef580cf8d0d469ffe1e21804f20c)
+        ;
+
+        
+    
+    
+            var circle_marker_c04b37ac62c658604656d3cef446855a = L.circleMarker(
+                [-11.221383130476744, -40.12099622793619],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_eee7f5ab7199cfb0339437d4050d64c4 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ebaea58851a7f8e4c1dea2262710f275 = $(`<div id="html_ebaea58851a7f8e4c1dea2262710f275" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 85<br>         <b>Score:</b> 0.838<br>         <b>Solar:</b> 6.12 kWh/m².dia<br>         <b>Vento:</b> 8.64 m/s<br>         <b>Dist. rede:</b> 215.5 km<br>         <b>Dist. demanda:</b> 681.1 km<br>         <b>Custo conexão:</b> R$ 258,576,099         </div>`)[0];
+                popup_eee7f5ab7199cfb0339437d4050d64c4.setContent(html_ebaea58851a7f8e4c1dea2262710f275);
+            
+        
+
+        circle_marker_c04b37ac62c658604656d3cef446855a.bindPopup(popup_eee7f5ab7199cfb0339437d4050d64c4)
+        ;
+
+        
+    
+    
+            var circle_marker_cdc3f56f6a5eb184855289b316eeaa70 = L.circleMarker(
+                [-11.280755525179638, -41.493336077715234],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_c2d4c062fac9222dfbfba401425c1735 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8e022c1a47b91a7627a53e1383ff5036 = $(`<div id="html_8e022c1a47b91a7627a53e1383ff5036" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 86<br>         <b>Score:</b> 0.838<br>         <b>Solar:</b> 5.52 kWh/m².dia<br>         <b>Vento:</b> 8.61 m/s<br>         <b>Dist. rede:</b> 150.7 km<br>         <b>Dist. demanda:</b> 814.8 km<br>         <b>Custo conexão:</b> R$ 180,869,562         </div>`)[0];
+                popup_c2d4c062fac9222dfbfba401425c1735.setContent(html_8e022c1a47b91a7627a53e1383ff5036);
+            
+        
+
+        circle_marker_cdc3f56f6a5eb184855289b316eeaa70.bindPopup(popup_c2d4c062fac9222dfbfba401425c1735)
+        ;
+
+        
+    
+    
+            var circle_marker_2ef62ca1846a0bbe7c94069429a7564b = L.circleMarker(
+                [-9.846976399630082, -38.81480379630596],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_12550e09b8824a6b2792582c93ff7dc5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_af59435a9da77a9638c57bdf5cb9bea3 = $(`<div id="html_af59435a9da77a9638c57bdf5cb9bea3" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 87<br>         <b>Score:</b> 0.837<br>         <b>Solar:</b> 5.82 kWh/m².dia<br>         <b>Vento:</b> 8.38 m/s<br>         <b>Dist. rede:</b> 144.9 km<br>         <b>Dist. demanda:</b> 479.8 km<br>         <b>Custo conexão:</b> R$ 173,919,789         </div>`)[0];
+                popup_12550e09b8824a6b2792582c93ff7dc5.setContent(html_af59435a9da77a9638c57bdf5cb9bea3);
+            
+        
+
+        circle_marker_2ef62ca1846a0bbe7c94069429a7564b.bindPopup(popup_12550e09b8824a6b2792582c93ff7dc5)
+        ;
+
+        
+    
+    
+            var circle_marker_c1d0508397c8a7063a7a1f730b23dd34 = L.circleMarker(
+                [-8.11618403054141, -39.34232679373033],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_d52b57888ae4a38ab2e7bfb703898e8c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_afff355a9a896b3b8f4e38e39fd65a6c = $(`<div id="html_afff355a9a896b3b8f4e38e39fd65a6c" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 88<br>         <b>Score:</b> 0.836<br>         <b>Solar:</b> 6.04 kWh/m².dia<br>         <b>Vento:</b> 8.23 m/s<br>         <b>Dist. rede:</b> 57.1 km<br>         <b>Dist. demanda:</b> 491.9 km<br>         <b>Custo conexão:</b> R$ 68,466,186         </div>`)[0];
+                popup_d52b57888ae4a38ab2e7bfb703898e8c.setContent(html_afff355a9a896b3b8f4e38e39fd65a6c);
+            
+        
+
+        circle_marker_c1d0508397c8a7063a7a1f730b23dd34.bindPopup(popup_d52b57888ae4a38ab2e7bfb703898e8c)
+        ;
+
+        
+    
+    
+            var circle_marker_ed359695fb84ebdf670728bc72fa3571 = L.circleMarker(
+                [-8.79330937032999, -34.76683433742382],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_08e09135819813259fe68084781ca652 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0dec98a5a4578727763b27a53c5812af = $(`<div id="html_0dec98a5a4578727763b27a53c5812af" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 89<br>         <b>Score:</b> 0.836<br>         <b>Solar:</b> 6.30 kWh/m².dia<br>         <b>Vento:</b> 8.51 m/s<br>         <b>Dist. rede:</b> 367.8 km<br>         <b>Dist. demanda:</b> 87.6 km<br>         <b>Custo conexão:</b> R$ 441,343,716         </div>`)[0];
+                popup_08e09135819813259fe68084781ca652.setContent(html_0dec98a5a4578727763b27a53c5812af);
+            
+        
+
+        circle_marker_ed359695fb84ebdf670728bc72fa3571.bindPopup(popup_08e09135819813259fe68084781ca652)
+        ;
+
+        
+    
+    
+            var circle_marker_8a1e3d11175fa37488fd1d64331c2a21 = L.circleMarker(
+                [-5.8659776340697585, -37.155400032978534],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_101282173effb06a3904f0f9e1240dfe = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0260a7b1a75e75aabff25f569de419a9 = $(`<div id="html_0260a7b1a75e75aabff25f569de419a9" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 90<br>         <b>Score:</b> 0.835<br>         <b>Solar:</b> 5.96 kWh/m².dia<br>         <b>Vento:</b> 8.50 m/s<br>         <b>Dist. rede:</b> 262.7 km<br>         <b>Dist. demanda:</b> 357.0 km<br>         <b>Custo conexão:</b> R$ 315,257,582         </div>`)[0];
+                popup_101282173effb06a3904f0f9e1240dfe.setContent(html_0260a7b1a75e75aabff25f569de419a9);
+            
+        
+
+        circle_marker_8a1e3d11175fa37488fd1d64331c2a21.bindPopup(popup_101282173effb06a3904f0f9e1240dfe)
+        ;
+
+        
+    
+    
+            var circle_marker_2d46f256b7cee7350513e6223a96c30e = L.circleMarker(
+                [-8.161678893240598, -40.70262302761257],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_78a70a812d0a30b1d22979bb0d36299d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9843ad2b620f926f229748af77f8f909 = $(`<div id="html_9843ad2b620f926f229748af77f8f909" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 91<br>         <b>Score:</b> 0.835<br>         <b>Solar:</b> 5.78 kWh/m².dia<br>         <b>Vento:</b> 8.43 m/s<br>         <b>Dist. rede:</b> 121.8 km<br>         <b>Dist. demanda:</b> 641.9 km<br>         <b>Custo conexão:</b> R$ 146,172,723         </div>`)[0];
+                popup_78a70a812d0a30b1d22979bb0d36299d.setContent(html_9843ad2b620f926f229748af77f8f909);
+            
+        
+
+        circle_marker_2d46f256b7cee7350513e6223a96c30e.bindPopup(popup_78a70a812d0a30b1d22979bb0d36299d)
+        ;
+
+        
+    
+    
+            var circle_marker_a88b486b4c06cddd1a3ee9979ff66aae = L.circleMarker(
+                [-5.456243600082828, -38.07031153594969],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_d1605c87b5c0ae71673c3e34ba0ebf52 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9dd769f653c594ffb094c805e4d1839d = $(`<div id="html_9dd769f653c594ffb094c805e4d1839d" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 92<br>         <b>Score:</b> 0.835<br>         <b>Solar:</b> 6.32 kWh/m².dia<br>         <b>Vento:</b> 8.61 m/s<br>         <b>Dist. rede:</b> 292.3 km<br>         <b>Dist. demanda:</b> 463.2 km<br>         <b>Custo conexão:</b> R$ 350,708,814         </div>`)[0];
+                popup_d1605c87b5c0ae71673c3e34ba0ebf52.setContent(html_9dd769f653c594ffb094c805e4d1839d);
+            
+        
+
+        circle_marker_a88b486b4c06cddd1a3ee9979ff66aae.bindPopup(popup_d1605c87b5c0ae71673c3e34ba0ebf52)
+        ;
+
+        
+    
+    
+            var circle_marker_239486a2f9f48f1987e01792b1e20229 = L.circleMarker(
+                [-10.5555948235228, -35.577883855148194],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_6893d93908d4b7901096b020b2b96ba1 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b313231e2f25f8b0c67a2adf4fee2aa8 = $(`<div id="html_b313231e2f25f8b0c67a2adf4fee2aa8" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 93<br>         <b>Score:</b> 0.834<br>         <b>Solar:</b> 6.03 kWh/m².dia<br>         <b>Vento:</b> 8.69 m/s<br>         <b>Dist. rede:</b> 397.5 km<br>         <b>Dist. demanda:</b> 301.5 km<br>         <b>Custo conexão:</b> R$ 477,044,723         </div>`)[0];
+                popup_6893d93908d4b7901096b020b2b96ba1.setContent(html_b313231e2f25f8b0c67a2adf4fee2aa8);
+            
+        
+
+        circle_marker_239486a2f9f48f1987e01792b1e20229.bindPopup(popup_6893d93908d4b7901096b020b2b96ba1)
+        ;
+
+        
+    
+    
+            var circle_marker_86183bd0423b2db7f4df8c2d68224c35 = L.circleMarker(
+                [-7.9764575574775085, -35.716425689559756],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_0fe8242d7f5d7996d1af62fdce8a8cce = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_45ab1eb93767c097c60ec7ba6b10180e = $(`<div id="html_45ab1eb93767c097c60ec7ba6b10180e" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 94<br>         <b>Score:</b> 0.834<br>         <b>Solar:</b> 6.37 kWh/m².dia<br>         <b>Vento:</b> 8.30 m/s<br>         <b>Dist. rede:</b> 251.8 km<br>         <b>Dist. demanda:</b> 92.6 km<br>         <b>Custo conexão:</b> R$ 302,122,480         </div>`)[0];
+                popup_0fe8242d7f5d7996d1af62fdce8a8cce.setContent(html_45ab1eb93767c097c60ec7ba6b10180e);
+            
+        
+
+        circle_marker_86183bd0423b2db7f4df8c2d68224c35.bindPopup(popup_0fe8242d7f5d7996d1af62fdce8a8cce)
+        ;
+
+        
+    
+    
+            var circle_marker_9c5fd42f393a63e5d98ee2c504bce18e = L.circleMarker(
+                [-7.598787750129577, -37.09380350188318],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_21b9d5957b813e7e934171509799a0e4 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e78f136e63901de8a5ff0056b0cad013 = $(`<div id="html_e78f136e63901de8a5ff0056b0cad013" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 95<br>         <b>Score:</b> 0.834<br>         <b>Solar:</b> 6.09 kWh/m².dia<br>         <b>Vento:</b> 8.15 m/s<br>         <b>Dist. rede:</b> 110.1 km<br>         <b>Dist. demanda:</b> 249.7 km<br>         <b>Custo conexão:</b> R$ 132,097,666         </div>`)[0];
+                popup_21b9d5957b813e7e934171509799a0e4.setContent(html_e78f136e63901de8a5ff0056b0cad013);
+            
+        
+
+        circle_marker_9c5fd42f393a63e5d98ee2c504bce18e.bindPopup(popup_21b9d5957b813e7e934171509799a0e4)
+        ;
+
+        
+    
+    
+            var circle_marker_4a3e0b37adf9e562a345e41b15f5ef99 = L.circleMarker(
+                [-9.481980735244983, -40.654431565100246],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_d9534f5012d3227cceeb929e861db126 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9ee15307a8b03bbae8393697562cb042 = $(`<div id="html_9ee15307a8b03bbae8393697562cb042" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 96<br>         <b>Score:</b> 0.834<br>         <b>Solar:</b> 5.92 kWh/m².dia<br>         <b>Vento:</b> 8.24 m/s<br>         <b>Dist. rede:</b> 13.5 km<br>         <b>Dist. demanda:</b> 656.2 km<br>         <b>Custo conexão:</b> R$ 16,190,124         </div>`)[0];
+                popup_d9534f5012d3227cceeb929e861db126.setContent(html_9ee15307a8b03bbae8393697562cb042);
+            
+        
+
+        circle_marker_4a3e0b37adf9e562a345e41b15f5ef99.bindPopup(popup_d9534f5012d3227cceeb929e861db126)
+        ;
+
+        
+    
+    
+            var circle_marker_0e91a1c8cce6c5a21d04b246bd217e5c = L.circleMarker(
+                [-9.008750609294983, -39.76246284319441],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_cdcc9ae0941e4406fc8fab9456dcc2b0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_49a3fe5243f17ace538fed5eb944a8e7 = $(`<div id="html_49a3fe5243f17ace538fed5eb944a8e7" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 97<br>         <b>Score:</b> 0.833<br>         <b>Solar:</b> 5.93 kWh/m².dia<br>         <b>Vento:</b> 8.16 m/s<br>         <b>Dist. rede:</b> 11.6 km<br>         <b>Dist. demanda:</b> 548.7 km<br>         <b>Custo conexão:</b> R$ 13,873,533         </div>`)[0];
+                popup_cdcc9ae0941e4406fc8fab9456dcc2b0.setContent(html_49a3fe5243f17ace538fed5eb944a8e7);
+            
+        
+
+        circle_marker_0e91a1c8cce6c5a21d04b246bd217e5c.bindPopup(popup_cdcc9ae0941e4406fc8fab9456dcc2b0)
+        ;
+
+        
+    
+    
+            var circle_marker_9def7efe4738957d041d09d985c96130 = L.circleMarker(
+                [-11.036925487546247, -36.464305963114],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_d3173b19f9c536fbbc6b4b67ebdb02ee = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9acb542578e600937a22da46d3c45a48 = $(`<div id="html_9acb542578e600937a22da46d3c45a48" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 98<br>         <b>Score:</b> 0.833<br>         <b>Solar:</b> 6.46 kWh/m².dia<br>         <b>Vento:</b> 8.72 m/s<br>         <b>Dist. rede:</b> 388.2 km<br>         <b>Dist. demanda:</b> 387.9 km<br>         <b>Custo conexão:</b> R$ 465,793,531         </div>`)[0];
+                popup_d3173b19f9c536fbbc6b4b67ebdb02ee.setContent(html_9acb542578e600937a22da46d3c45a48);
+            
+        
+
+        circle_marker_9def7efe4738957d041d09d985c96130.bindPopup(popup_d3173b19f9c536fbbc6b4b67ebdb02ee)
+        ;
+
+        
+    
+    
+            var circle_marker_779bf775d39b50af208bdd8688a45587 = L.circleMarker(
+                [-6.841055777947738, -40.743377451074046],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_35b34a22811a6f93c33dc55f877d0f76 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ac100668639fea1e93ce029f59d18c9c = $(`<div id="html_ac100668639fea1e93ce029f59d18c9c" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 99<br>         <b>Score:</b> 0.832<br>         <b>Solar:</b> 6.24 kWh/m².dia<br>         <b>Vento:</b> 8.66 m/s<br>         <b>Dist. rede:</b> 257.1 km<br>         <b>Dist. demanda:</b> 662.0 km<br>         <b>Custo conexão:</b> R$ 308,535,570         </div>`)[0];
+                popup_35b34a22811a6f93c33dc55f877d0f76.setContent(html_ac100668639fea1e93ce029f59d18c9c);
+            
+        
+
+        circle_marker_779bf775d39b50af208bdd8688a45587.bindPopup(popup_35b34a22811a6f93c33dc55f877d0f76)
+        ;
+
+        
+    
+    
+            var circle_marker_5958c47fd675a39972678e0bd2487d34 = L.circleMarker(
+                [-7.957212518166895, -35.26335958066701],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.75, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_14fe1a95db71bdc74729ddf0deda27e1);
+        
+    
+        var popup_b16c7878f7178b9c845aef9281fd437b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9a7f26aa0e7694278a78e51059bed9d2 = $(`<div id="html_9a7f26aa0e7694278a78e51059bed9d2" style="width: 100.0%; height: 100.0%;">         <b>Rank:</b> 100<br>         <b>Score:</b> 0.830<br>         <b>Solar:</b> 6.11 kWh/m².dia<br>         <b>Vento:</b> 8.33 m/s<br>         <b>Dist. rede:</b> 301.7 km<br>         <b>Dist. demanda:</b> 43.6 km<br>         <b>Custo conexão:</b> R$ 362,098,773         </div>`)[0];
+                popup_b16c7878f7178b9c845aef9281fd437b.setContent(html_9a7f26aa0e7694278a78e51059bed9d2);
+            
+        
+
+        circle_marker_5958c47fd675a39972678e0bd2487d34.bindPopup(popup_b16c7878f7178b9c845aef9281fd437b)
+        ;
+
+        
+    
+    
+            marker_cluster_14fe1a95db71bdc74729ddf0deda27e1.addTo(map_b4d999c99779b378da5c7f2285a8d93d);
+        
+</script>
+</html>

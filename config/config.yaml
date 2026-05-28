@@ -42,6 +42,7 @@ thresholds:
   min_solar_kwh_m2_day: 4.5
   min_wind_m_s: 5.5
   restriction_policy: exclude
+  restriction_penalty_factor: 0.35
 
 costs:
   connection_cost_per_km_brl: 1200000

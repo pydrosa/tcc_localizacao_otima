@@ -6,10 +6,12 @@ sys.path.append(str(ROOT))
 
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 from streamlit_folium import st_folium
 
 from src.config import load_config
 from src.analysis import run_analysis, export_results
+from src.scoring import normalize_weights
 from src.visualization import make_folium_map
 
 st.set_page_config(page_title="TCC Energia", layout="wide")
@@ -24,11 +26,34 @@ with st.sidebar:
     spacing = st.slider("Espaçamento da malha candidata (km)", 10, 150, int(config["analysis"]["grid_spacing_km"]), 10)
     top_n = st.slider("Top N pontos no mapa", 10, 300, 100, 10)
 
+    st.subheader("Restrições ambientais")
+    restriction_policy = st.radio(
+        "Tratamento",
+        ["exclude", "penalize"],
+        format_func=lambda value: "Excluir áreas restritas" if value == "exclude" else "Penalizar áreas restritas",
+        horizontal=False,
+    )
+    config.setdefault("thresholds", {})["restriction_policy"] = restriction_policy
+    if restriction_policy == "penalize":
+        config["thresholds"]["restriction_penalty_factor"] = st.slider("Fator de penalização", 0.0, 1.0, 0.35, 0.05)
+
     st.subheader("Pesos do cenário")
-    weights = config["weights"][scenario]
+    weights = config["weights"][scenario].copy()
     for key, value in list(weights.items()):
         weights[key] = st.slider(key, 0.0, 1.0, float(value), 0.05)
     config["weights"][scenario] = weights
+    try:
+        normalized_weights = normalize_weights(weights)
+        st.caption(f"Soma informada: {sum(weights.values()):.2f}. O modelo normaliza automaticamente para 1,00.")
+        st.dataframe(
+            pd.DataFrame(
+            {"critério": list(normalized_weights), "peso_normalizado": list(normalized_weights.values())}
+        ),
+        hide_index=True,
+        width="stretch",
+    )
+    except ValueError as exc:
+        st.warning(str(exc))
 
     run_btn = st.button("Executar análise", type="primary")
 
@@ -40,32 +65,66 @@ Quanto maior o score, mais atrativo é o ponto candidato.
 
 if run_btn:
     with st.spinner("Processando dados geoespaciais..."):
-        results = run_analysis(config, scenario=scenario, grid_spacing_km=spacing)
-        exported = export_results(results, config, scenario)
-        fmap = make_folium_map(results, top_n=top_n)
+        try:
+            results = run_analysis(config, scenario=scenario, grid_spacing_km=spacing)
+            exported = export_results(results, config, scenario)
+            map_path = exported["maps_dir"] / f"mapa_{scenario}.html"
+            fmap = make_folium_map(results, output_path=map_path, top_n=top_n)
+        except Exception as exc:
+            st.error(f"Não foi possível executar a análise: {exc}")
+            st.stop()
 
     st.success(f"Análise concluída: {len(results)} pontos candidatos válidos.")
 
-    c1, c2, c3, c4 = st.columns(4)
+    c1, c2, c3, c4, c5 = st.columns(5)
     c1.metric("Melhor score", f"{results['score_final'].max():.3f}")
     c2.metric("Solar médio", f"{results['solar_kwh_m2_day'].mean():.2f}")
     c3.metric("Vento médio", f"{results['wind_m_s'].mean():.2f}")
     c4.metric("Distância média à rede", f"{results['dist_grid_km'].mean():.1f} km")
+    c5.metric("Em área restrita", int(results["is_restricted"].sum()))
+
+    chart_cols = st.columns(2)
+    with chart_cols[0]:
+        st.subheader("Distribuição do score")
+        st.plotly_chart(
+            px.histogram(results, x="score_final", nbins=30, labels={"score_final": "Score final"}),
+            width="stretch",
+        )
+    with chart_cols[1]:
+        st.subheader("Top 10 candidatos")
+        top10 = results.head(10).copy()
+        top10["candidate_id"] = top10["candidate_id"].astype(str)
+        st.plotly_chart(
+            px.bar(
+                top10.sort_values("score_final"),
+                x="score_final",
+                y="candidate_id",
+                orientation="h",
+                labels={"score_final": "Score final", "candidate_id": "Candidato"},
+            ),
+            width="stretch",
+        )
 
     st.subheader("Mapa dos melhores pontos")
     st_folium(fmap, width=None, height=600)
 
     st.subheader("Ranking")
-    cols = ["rank", "candidate_id", "solar_kwh_m2_day", "wind_m_s", "dist_grid_km", "dist_demand_km", "connection_cost_brl", "score_final"]
-    st.dataframe(results[cols].head(100), use_container_width=True)
+    display_results = results.to_crs("EPSG:4326").copy()
+    display_results["longitude"] = display_results.geometry.x
+    display_results["latitude"] = display_results.geometry.y
+    cols = [
+        "rank", "candidate_id", "latitude", "longitude", "solar_kwh_m2_day", "wind_m_s", "dist_grid_km",
+        "dist_demand_km", "connection_cost_brl", "is_restricted", "score_final",
+    ]
+    st.dataframe(display_results[cols].head(100), width="stretch")
 
     st.download_button(
         "Baixar ranking CSV",
-        data=results[cols].to_csv(index=False).encode("utf-8"),
+        data=display_results[cols].to_csv(index=False).encode("utf-8"),
         file_name=f"ranking_{scenario}.csv",
         mime="text/csv",
     )
 
-    st.info(f"Arquivos exportados em: {exported['csv']} e {exported['geojson']}")
+    st.info(f"Arquivos exportados em: {exported['csv']}, {exported['geojson']} e {map_path}")
 else:
     st.warning("Clique em 'Executar análise' na barra lateral. Se ainda não tiver dados, rode: python scripts/generate_mock_data.py")

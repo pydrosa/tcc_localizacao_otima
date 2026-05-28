@@ -21,6 +21,18 @@ Identificar e ranquear áreas candidatas para novas usinas renováveis considera
 4. Exportação de resultados em CSV, GeoJSON e mapa HTML.
 5. Estrutura completa sugerida para TCC.
 
+## Avaliação da stack
+
+A stack atual é adequada para o objetivo do projeto:
+
+- `GeoPandas`, `Shapely` e `PyProj` resolvem bem o processamento vetorial e os cálculos em CRS projetado;
+- `Rasterio` é a escolha prática para extrair potencial solar/eólico de rasters GeoTIFF;
+- `Streamlit` entrega uma interface simples para ajustar cenários e pesos sem criar uma aplicação web complexa;
+- `Folium` funciona bem para mapas interativos exploratórios;
+- `Pandas`/`NumPy` são suficientes para ranking, normalização e exportações.
+
+Para um TCC e um protótipo analítico, trocar para uma stack mais pesada, como backend web dedicado, banco espacial ou frontend separado, aumentaria a complexidade sem ganho proporcional. Essas tecnologias só passam a ser necessárias se o projeto evoluir para produção com muitos usuários, dados grandes ou ingestão contínua.
+
 ## Execução rápida
 
 ```bash
@@ -60,5 +72,13 @@ TCC_Energia_Robusto/
 
 ## Metodologia resumida
 
-O sistema gera uma malha de pontos candidatos, extrai os valores de potencial solar e eólico dos rasters, calcula distâncias geodésicas até rede e demanda, remove ou penaliza áreas restritas e calcula um score multicritério normalizado.
+O sistema gera uma malha de pontos candidatos, extrai os valores de potencial solar e eólico dos rasters, calcula distâncias em CRS projetado até rede e demanda, remove ou penaliza áreas restritas e calcula um score multicritério normalizado.
 
+Melhorias metodológicas implementadas:
+
+- normalização min-max com tratamento explícito para critérios sem variação e dados ausentes;
+- normalização automática dos pesos informados, mantendo a importância relativa e garantindo score entre 0 e 1;
+- cálculo de distância ao elemento mais próximo usando índice espacial (`sjoin_nearest`), mais escalável que medir todos os pontos contra uma geometria unificada;
+- política configurável para restrições ambientais: exclusão dos pontos restritos ou penalização do score;
+- exportação do indicador `is_restricted` e do fator de penalização para auditoria dos resultados;
+- dashboard com distribuição de scores, top candidatos, mapa exportado e pesos normalizados.

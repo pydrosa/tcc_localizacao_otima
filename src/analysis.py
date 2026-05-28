@@ -5,16 +5,25 @@ import geopandas as gpd
 import pandas as pd
 
 from src.io import read_vector, read_raster, ensure_dir
-from src.geo_utils import to_crs, create_grid_from_bounds, nearest_distance_km, remove_restricted
+from src.geo_utils import to_crs, create_grid_from_bounds, nearest_distance_km, apply_restrictions
 from src.raster_tools import sample_raster_at_points
 from src.scoring import normalize_positive, normalize_negative, weighted_score
 
 
+VALID_SCENARIOS = {"solar", "eolico", "hibrido"}
+
+
 def run_analysis(config: dict, scenario: str = "hibrido", grid_spacing_km: float | None = None) -> gpd.GeoDataFrame:
+    if scenario not in VALID_SCENARIOS:
+        raise ValueError(f"Cenário inválido: {scenario}. Use um de: {sorted(VALID_SCENARIOS)}.")
+
     paths = config["paths"]
     analysis_cfg = config["analysis"]
+    thresholds = config.get("thresholds", {})
     projected_crs = analysis_cfg.get("crs_projected", "EPSG:5880")
     spacing_km = grid_spacing_km or analysis_cfg.get("grid_spacing_km", 50)
+    if spacing_km <= 0:
+        raise ValueError("O espaçamento da malha deve ser maior que zero.")
     spacing_m = spacing_km * 1000
 
     substations = read_vector(paths["substations"], required=False)
@@ -39,7 +48,16 @@ def run_analysis(config: dict, scenario: str = "hibrido", grid_spacing_km: float
     bounds = (minx - buffer_m, miny - buffer_m, maxx + buffer_m, maxy + buffer_m)
 
     grid = create_grid_from_bounds(bounds, spacing_m=spacing_m, crs=projected_crs)
-    grid = remove_restricted(grid, restrictions_m)
+    restriction_policy = thresholds.get("restriction_policy", "exclude")
+    restriction_penalty = thresholds.get("restriction_penalty_factor", 0.35)
+    grid = apply_restrictions(
+        grid,
+        restrictions_m,
+        policy=restriction_policy,
+        penalty_factor=restriction_penalty,
+    )
+    if grid.empty:
+        raise ValueError("Nenhum ponto candidato restou após aplicar as restrições ambientais.")
 
     grid_geo = grid.to_crs("EPSG:4326")
     grid["solar_kwh_m2_day"] = sample_raster_at_points(solar_raster, grid_geo)
@@ -56,7 +74,6 @@ def run_analysis(config: dict, scenario: str = "hibrido", grid_spacing_km: float
     cost_per_km = config.get("costs", {}).get("connection_cost_per_km_brl", 1200000)
     grid["connection_cost_brl"] = grid["dist_grid_km"] * cost_per_km
 
-    thresholds = config.get("thresholds", {})
     min_solar = thresholds.get("min_solar_kwh_m2_day", 0)
     min_wind = thresholds.get("min_wind_m_s", 0)
 
@@ -67,6 +84,9 @@ def run_analysis(config: dict, scenario: str = "hibrido", grid_spacing_km: float
     elif scenario == "hibrido":
         grid = grid[(grid["solar_kwh_m2_day"].fillna(0) >= min_solar) | (grid["wind_m_s"].fillna(0) >= min_wind)].copy()
 
+    if grid.empty:
+        raise ValueError("Nenhum ponto candidato atendeu aos limiares mínimos do cenário selecionado.")
+
     grid["solar_score"] = normalize_positive(grid["solar_kwh_m2_day"])
     grid["wind_score"] = normalize_positive(grid["wind_m_s"])
     grid["grid_distance_score"] = normalize_negative(grid["dist_grid_km"])
@@ -74,7 +94,7 @@ def run_analysis(config: dict, scenario: str = "hibrido", grid_spacing_km: float
     grid["connection_cost_score"] = normalize_negative(grid["connection_cost_brl"])
 
     weights = config["weights"].get(scenario, config["weights"]["hibrido"])
-    grid["score_final"] = weighted_score(grid, weights)
+    grid["score_final"] = weighted_score(grid, weights) * grid["restriction_factor"]
     grid["scenario"] = scenario
 
     grid = grid.sort_values("score_final", ascending=False).reset_index(drop=True)
@@ -92,9 +112,12 @@ def export_results(gdf: gpd.GeoDataFrame, config: dict, scenario: str) -> dict:
 
     cols = [
         "rank", "candidate_id", "scenario", "solar_kwh_m2_day", "wind_m_s",
-        "dist_grid_km", "dist_demand_km", "connection_cost_brl", "score_final", "geometry"
+        "dist_grid_km", "dist_demand_km", "connection_cost_brl", "is_restricted",
+        "restriction_factor", "score_final", "geometry"
     ]
     export_gdf = gdf[cols].to_crs("EPSG:4326")
+    export_gdf["longitude"] = export_gdf.geometry.x
+    export_gdf["latitude"] = export_gdf.geometry.y
     export_gdf.drop(columns="geometry").to_csv(csv_path, index=False)
     export_gdf.to_file(geojson_path, driver="GeoJSON")
 

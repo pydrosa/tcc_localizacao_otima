@@ -9,6 +9,7 @@ dependencies:
   - pyproj
   - pandas
   - numpy
+  - pyyaml
   - scikit-learn
   - streamlit
   - plotly

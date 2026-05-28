@@ -36,6 +36,8 @@ São calculadas:
 - distância até a subestação ou linha mais próxima;
 - distância até o centro de carga mais próximo.
 
+As distâncias são calculadas no CRS projetado configurado (`EPSG:5880` por padrão), usando busca espacial do elemento mais próximo. Isso preserva unidades em metros e melhora a escalabilidade quando há muitos pontos candidatos ou muitos elementos de rede.
+
 ## 6. Estimativa de custo
 
 O custo de conexão é estimado por:
@@ -46,7 +48,12 @@ Custo = distância até rede (km) × custo médio por km
 
 ## 7. Restrições
 
-Pontos dentro de áreas restritas são removidos da análise.
+A política de restrição ambiental é configurável:
+
+- `exclude`: pontos dentro de áreas restritas são removidos da análise;
+- `penalize`: pontos restritos permanecem no ranking, mas recebem um fator multiplicativo de penalização no score final.
+
+A opção `exclude` é mais conservadora para áreas de impedimento legal. A opção `penalize` é útil quando a camada representa sensibilidade ambiental, custo de mitigação ou restrição ainda sujeita a validação.
 
 ## 8. Normalização
 
@@ -63,6 +70,8 @@ Variáveis de custo:
 - distância à carga;
 - custo de conexão.
 
+Critérios sem variação recebem valor neutro, evitando que uma camada constante domine o resultado. Critérios totalmente ausentes recebem score zero para não favorecer candidatos por falta de informação.
+
 ## 9. Score final
 
 O score final é calculado por soma ponderada. Três cenários são implementados:
@@ -70,6 +79,8 @@ O score final é calculado por soma ponderada. Três cenários são implementado
 - Solar;
 - Eólico;
 - Híbrido.
+
+Os pesos informados em cada cenário são normalizados automaticamente para soma igual a 1. Assim, o usuário pode ajustar valores relativos na interface sem precisar fechar manualmente a soma dos pesos.
 
 ## 10. Saídas
 

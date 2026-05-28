@@ -22,15 +22,44 @@ def create_grid_from_bounds(bounds, spacing_m: float, crs: str) -> gpd.GeoDataFr
 def nearest_distance_km(points: gpd.GeoDataFrame, targets: gpd.GeoDataFrame | None) -> np.ndarray:
     if targets is None or targets.empty:
         return np.full(len(points), np.nan)
-    target_union = targets.geometry.union_all()
-    return points.geometry.distance(target_union).to_numpy() / 1000.0
+
+    target_geometries = targets[["geometry"]].copy()
+    if target_geometries.crs != points.crs:
+        target_geometries = target_geometries.to_crs(points.crs)
+
+    joined = gpd.sjoin_nearest(
+        points[["geometry"]],
+        target_geometries,
+        how="left",
+        distance_col="distance_m",
+    )
+    distances_m = joined.groupby(level=0)["distance_m"].min().reindex(points.index)
+    return distances_m.to_numpy(dtype=float) / 1000.0
 
 
-def remove_restricted(points: gpd.GeoDataFrame, restrictions: gpd.GeoDataFrame | None) -> gpd.GeoDataFrame:
-    if restrictions is None or restrictions.empty:
-        points["is_restricted"] = False
-        return points
-    restricted_union = restrictions.geometry.union_all()
+def apply_restrictions(
+    points: gpd.GeoDataFrame,
+    restrictions: gpd.GeoDataFrame | None,
+    *,
+    policy: str = "exclude",
+    penalty_factor: float = 0.35,
+) -> gpd.GeoDataFrame:
     points = points.copy()
+    points["is_restricted"] = False
+    points["restriction_factor"] = 1.0
+
+    if restrictions is None or restrictions.empty:
+        return points
+
+    if policy not in {"exclude", "penalize"}:
+        raise ValueError("restriction_policy deve ser 'exclude' ou 'penalize'.")
+    if not 0 <= penalty_factor <= 1:
+        raise ValueError("restriction_penalty_factor deve estar entre 0 e 1.")
+
+    restricted_union = restrictions.geometry.union_all()
     points["is_restricted"] = points.geometry.within(restricted_union)
-    return points[~points["is_restricted"]].copy()
+    if policy == "exclude":
+        return points[~points["is_restricted"]].copy()
+
+    points.loc[points["is_restricted"], "restriction_factor"] = penalty_factor
+    return points
