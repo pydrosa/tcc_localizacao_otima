@@ -47,7 +47,7 @@ streamlit run app/main_streamlit.py
 
 Use `app/main_streamlit.py` como arquivo principal. O projeto mantém apenas `requirements.txt` para o deploy porque o Streamlit Cloud prioriza `environment.yml` quando ele existe no repositório, o que pode deixar a implantação presa na etapa de resolução do ambiente Conda.
 
-O repositório já inclui dados fictícios em `data/raw/` para o primeiro deploy funcionar sem etapa manual de ingestão. Depois, esses arquivos podem ser substituídos pelas bases reais indicadas abaixo.
+No primeiro boot, o aplicativo cria dados fictícios em `data/raw/` se os arquivos esperados ainda não existirem. Isso permite que o primeiro deploy funcione sem etapa manual de ingestão. Depois, esses arquivos podem ser substituídos pelas bases reais indicadas abaixo.
 
 ## Estrutura
 

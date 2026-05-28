@@ -13,12 +13,27 @@ from src.config import load_config
 from src.analysis import run_analysis, export_results
 from src.scoring import normalize_weights
 from src.visualization import make_folium_map
+from scripts.generate_mock_data import generate_mock_data
+
+
+def ensure_demo_data(config: dict) -> None:
+    required_paths = [
+        ROOT / config["paths"]["substations"],
+        ROOT / config["paths"]["transmission_lines"],
+        ROOT / config["paths"]["solar_raster"],
+        ROOT / config["paths"]["wind_raster"],
+        ROOT / config["paths"]["demand_points"],
+        ROOT / config["paths"]["restrictions"],
+    ]
+    if not all(path.exists() for path in required_paths):
+        generate_mock_data(ROOT)
 
 st.set_page_config(page_title="TCC Energia", layout="wide")
 st.title("Localização Ótima de Usinas Renováveis")
 st.caption("Análise multicritério geoespacial para fontes solar, eólica e híbrida.")
 
 config = load_config(ROOT / "config/config.yaml")
+ensure_demo_data(config)
 
 with st.sidebar:
     st.header("Parâmetros")
