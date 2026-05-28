@@ -1,0 +1,47 @@
+project:
+  name: TCC_Energia_Robusto
+  description: Localização ótima de usinas renováveis com análise multicritério geoespacial.
+
+paths:
+  substations: data/raw/ons/subestacoes.geojson
+  transmission_lines: data/raw/ons/linhas.geojson
+  solar_raster: data/raw/solar/irradiancia_global.tif
+  wind_raster: data/raw/eolico/velocidade_vento.tif
+  demand_points: data/raw/demanda/demanda.geojson
+  restrictions: data/raw/restricoes/restricoes.geojson
+  outputs: outputs
+
+analysis:
+  crs_geographic: EPSG:4326
+  crs_projected: EPSG:5880
+  grid_spacing_km: 50
+  max_distance_grid_km: 250
+  default_scenario: hibrido
+
+weights:
+  solar:
+    solar_potential: 0.50
+    wind_potential: 0.00
+    grid_distance: 0.25
+    demand_distance: 0.15
+    connection_cost: 0.10
+  eolico:
+    solar_potential: 0.00
+    wind_potential: 0.50
+    grid_distance: 0.25
+    demand_distance: 0.15
+    connection_cost: 0.10
+  hibrido:
+    solar_potential: 0.30
+    wind_potential: 0.30
+    grid_distance: 0.20
+    demand_distance: 0.10
+    connection_cost: 0.10
+
+thresholds:
+  min_solar_kwh_m2_day: 4.5
+  min_wind_m_s: 5.5
+  restriction_policy: exclude
+
+costs:
+  connection_cost_per_km_brl: 1200000
