@@ -51,6 +51,11 @@ CRITERION_LABELS = {
     "connection_cost": "Custo de infraestrutura",
 }
 
+MAP_MODE_LABELS = {
+    "points": "Pontos",
+    "heatmap": "Mapa de calor",
+}
+
 
 def ensure_demo_data(config: dict) -> None:
     required_paths = [ROOT / config["paths"][key] for key in DATA_PATH_KEYS if key in config["paths"]]
@@ -103,33 +108,59 @@ def _selected_candidate_id(ranking: pd.DataFrame, selection_event) -> int:
     return selected_id
 
 
-def _ranking_map(ranking: pd.DataFrame, selected_candidate_id: int) -> pdk.Deck:
+def _ranking_map(ranking: pd.DataFrame, selected_candidate_id: int, map_mode: str) -> pdk.Deck:
     map_data = ranking.copy()
     map_data["is_selected"] = map_data["candidate_id"].astype(int) == selected_candidate_id
     selected = map_data[map_data["is_selected"]]
     base = map_data[~map_data["is_selected"]]
 
-    layers = [
-        pdk.Layer(
-            "ScatterplotLayer",
-            data=base,
-            get_position="[longitude, latitude]",
-            get_radius=24000,
-            get_fill_color="[37, 99, 235, 145]",
-            pickable=True,
-        ),
-        pdk.Layer(
-            "ScatterplotLayer",
-            data=selected,
-            get_position="[longitude, latitude]",
-            get_radius=70000,
-            get_fill_color="[220, 38, 38, 230]",
-            get_line_color="[255, 255, 255, 240]",
-            get_line_width=7000,
-            stroked=True,
-            pickable=True,
-        ),
-    ]
+    if map_mode == "heatmap":
+        layers = [
+            pdk.Layer(
+                "HeatmapLayer",
+                data=map_data,
+                get_position="[longitude, latitude]",
+                get_weight="score_final",
+                aggregation="SUM",
+                radiusPixels=55,
+                intensity=1.3,
+                threshold=0.04,
+                pickable=False,
+            ),
+            pdk.Layer(
+                "ScatterplotLayer",
+                data=selected,
+                get_position="[longitude, latitude]",
+                get_radius=65000,
+                get_fill_color="[220, 38, 38, 230]",
+                get_line_color="[255, 255, 255, 240]",
+                get_line_width=7000,
+                stroked=True,
+                pickable=True,
+            ),
+        ]
+    else:
+        layers = [
+            pdk.Layer(
+                "ScatterplotLayer",
+                data=base,
+                get_position="[longitude, latitude]",
+                get_radius=24000,
+                get_fill_color="[37, 99, 235, 145]",
+                pickable=True,
+            ),
+            pdk.Layer(
+                "ScatterplotLayer",
+                data=selected,
+                get_position="[longitude, latitude]",
+                get_radius=70000,
+                get_fill_color="[220, 38, 38, 230]",
+                get_line_color="[255, 255, 255, 240]",
+                get_line_width=7000,
+                stroked=True,
+                pickable=True,
+            ),
+        ]
 
     center = selected.iloc[0] if not selected.empty else map_data.iloc[0]
     return pdk.Deck(
@@ -153,7 +184,7 @@ def _ranking_map(ranking: pd.DataFrame, selected_candidate_id: int) -> pdk.Deck:
     )
 
 
-def render_results(results, exported, map_path, scenario: str, top_n: int) -> None:
+def render_results(results, exported, map_path, scenario: str, top_n: int, map_mode: str) -> None:
     st.success(f"Análise concluída: {len(results)} pontos candidatos válidos.")
 
     c1, c2, c3, c4, c5 = st.columns(5)
@@ -217,8 +248,8 @@ def render_results(results, exported, map_path, scenario: str, top_n: int) -> No
     selected_id = _selected_candidate_id(ranking, ranking_event)
     selected_row = ranking[ranking["candidate_id"].astype(int) == selected_id].iloc[0]
 
-    st.subheader("Mapa dos melhores pontos")
-    st.pydeck_chart(_ranking_map(ranking, selected_id), height=620)
+    st.subheader(f"Mapa dos melhores pontos - {MAP_MODE_LABELS[map_mode]}")
+    st.pydeck_chart(_ranking_map(ranking, selected_id, map_mode), height=620)
     st.caption(
         f"Ponto destacado: candidato {selected_id} | rank {int(selected_row['rank'])} | "
         f"score {selected_row['score_final']:.3f}"
@@ -232,6 +263,90 @@ def render_results(results, exported, map_path, scenario: str, top_n: int) -> No
     )
 
     st.info(f"Arquivos exportados em: {exported['csv']}, {exported['geojson']} e {map_path}")
+
+
+def render_methodology(config: dict) -> None:
+    st.divider()
+    st.header("Metodologia e parâmetros")
+
+    st.markdown(
+        """
+Este aplicativo usa uma análise multicritério geoespacial baseada em WLC
+(*Weighted Linear Combination*). A lógica é compatível com estudos SIG/AHP:
+cada critério é transformado para uma escala comum entre 0 e 1, recebe um peso
+normalizado e entra na soma ponderada final.
+
+```text
+score = soma(peso_normalizado_i * criterio_i) * fator_restricao
+```
+
+O resultado é uma pontuação contínua entre 0 e 1 e uma classe de aptidão de 1 a 9.
+Quanto maior o score e a classe, mais atrativo é o ponto candidato.
+"""
+    )
+
+    st.subheader("Parâmetros de execução")
+    st.markdown(
+        f"""
+- **Cenário**: altera a importância relativa dos critérios. O cenário híbrido é o principal quando o objetivo é considerar solar e eólica simultaneamente.
+- **Espaçamento da malha candidata**: define a distância entre os pontos avaliados. Valores menores aumentam o detalhe espacial e também o tempo de processamento.
+- **Top N pontos no mapa**: limita quantos candidatos aparecem na visualização. O ranking completo continua disponível no CSV.
+- **Tratamento das restrições**: `exclude` remove pontos em áreas restritas; `penalize` mantém o ponto, mas reduz o score pelo fator configurado.
+- **CRS projetado**: `{config["analysis"].get("crs_projected", "EPSG:5880")}` é usado para cálculo de distâncias em metros.
+"""
+    )
+
+    st.subheader("Critérios do score")
+    st.markdown(
+        """
+- **Potencial solar**: irradiância solar diária no ponto. Quanto maior, melhor.
+- **Potencial eólico**: velocidade média do vento no ponto. Quanto maior, melhor.
+- **Proximidade da rede**: distância até subestações ou linhas de transmissão. Quanto menor, melhor.
+- **Proximidade da demanda**: distância até centros de carga. Quanto menor, melhor.
+- **Acesso rodoviário**: distância até rodovias. Quanto menor, melhor para implantação, operação e manutenção.
+- **Acesso hídrico**: distância até recursos hídricos. Pode ser relevante para obras, limpeza, operação ou condicionantes locais.
+- **Afastamento urbano**: distância até áreas urbanas. Quanto maior dentro da faixa configurada, menor o conflito de uso.
+- **Declividade**: inclinação do terreno. Quanto menor, melhor para reduzir complexidade construtiva.
+- **Aptidão do uso do solo**: indicador raster de adequação territorial. Quanto maior, melhor.
+- **Custo de infraestrutura**: estimativa simplificada a partir de distâncias à rede, rodovias e água. Nos cenários padrão, esse peso fica zerado para não duplicar o efeito das distâncias que já compõem o custo.
+"""
+    )
+
+    fuzzy_rows = []
+    for key, bounds in config.get("fuzzy", {}).items():
+        fuzzy_rows.append(
+            {
+                "critério": CRITERION_LABELS.get(key, key),
+                "limite_inferior": bounds.get("lower"),
+                "limite_superior": bounds.get("upper"),
+            }
+        )
+    if fuzzy_rows:
+        st.subheader("Faixas fuzzy")
+        st.dataframe(pd.DataFrame(fuzzy_rows), hide_index=True, width="stretch")
+
+    st.subheader("Interpretação dos pesos")
+    st.markdown(
+        """
+Os pesos informados na barra lateral não precisam somar exatamente 1. O modelo normaliza automaticamente a soma antes de calcular o score. Assim, aumentar um peso aumenta a importância relativa daquele critério em relação aos demais.
+
+Na prática:
+
+- cenário **solar** favorece irradiância e viabilidade territorial;
+- cenário **eólico** favorece vento e viabilidade territorial;
+- cenário **híbrido** equilibra solar, vento e infraestrutura;
+- cenário **infraestrutura** favorece conexão, demanda e acesso;
+- cenário **ambiental** favorece menor conflito territorial e topográfico.
+"""
+    )
+
+    st.subheader("Visualização do mapa")
+    st.markdown(
+        """
+- **Pontos**: mostra os candidatos individualmente e destaca em vermelho o item selecionado no ranking.
+- **Mapa de calor**: agrega os candidatos por intensidade espacial, usando o `score_final` como peso. Áreas mais quentes indicam concentração de candidatos com boa pontuação.
+"""
+    )
 
 
 st.set_page_config(page_title="TCC Energia", layout="wide")
@@ -254,6 +369,14 @@ with st.sidebar:
     )
     spacing = st.slider("Espaçamento da malha candidata (km)", 10, 150, int(config["analysis"]["grid_spacing_km"]), 10)
     top_n = st.slider("Top N pontos no mapa", 10, 300, 100, 10)
+    map_mode = st.radio(
+        "Tipo de mapa",
+        options=["points", "heatmap"],
+        index=0,
+        format_func=lambda value: MAP_MODE_LABELS[value],
+        horizontal=True,
+    )
+    map_mode = map_mode or "points"
 
     st.subheader("Restrições ambientais")
     restriction_policy = st.radio(
@@ -311,6 +434,9 @@ if "last_results" in st.session_state:
         st.session_state["last_map_path"],
         st.session_state["last_scenario"],
         top_n,
+        map_mode,
     )
 else:
     st.warning("Nenhuma análise executada nesta sessão.")
+
+render_methodology(config)

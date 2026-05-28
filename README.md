@@ -25,7 +25,7 @@ A stack atual continua adequada para o objetivo do TCC:
 - `GeoPandas`, `Shapely` e `PyProj` para processamento vetorial e cálculo de distâncias em CRS projetado;
 - `Rasterio` para amostrar rasters de irradiância, vento, declividade e aptidão territorial;
 - `Streamlit` para uma interface simples de cenários e pesos;
-- `PyDeck` para mapa interativo no app com destaque do candidato selecionado no ranking;
+- `PyDeck` para mapa interativo no app, com visualização por pontos ou mapa de calor e destaque do candidato selecionado no ranking;
 - `Folium` para exportação de mapa HTML;
 - `Pandas`, `NumPy` e `Plotly` para ranking, scoring e gráficos.
 
@@ -94,4 +94,4 @@ Fluxo:
 - Ranking CSV;
 - Ranking GeoJSON;
 - mapa HTML;
-- dashboard Streamlit com seleção no ranking e destaque do ponto no mapa.
+- dashboard Streamlit com seleção no ranking, destaque do ponto no mapa, mapa de calor e explicação metodológica no fim da página.
