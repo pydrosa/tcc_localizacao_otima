@@ -1,3 +1,6 @@
+# Este arquivo é apenas para ambiente local ou instalação manual.
+# Para deploy no Streamlit Cloud, utilize apenas requirements.txt.
+# NÃO remover dependências daqui para ambiente local, mas sempre teste com pip!
 name: tcc_energia
 channels:
   - conda-forge
